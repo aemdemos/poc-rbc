@@ -1,6 +1,6 @@
 @import url('./cards-tool-tokens.css');
 
-.cards-tool > ul {
+.cards.tool > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
   gap: var(--cards-tool-grid-gap);
 }
 
-.cards-tool > ul > li {
+.cards.tool > ul > li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,18 +20,18 @@
   overflow: hidden;
 }
 
-.cards-tool .cards-card-body {
+.cards.tool .cards-card-body {
   flex: 1;
   margin: 0;
 }
 
-.cards-tool .cards-card-body h3 {
+.cards.tool .cards-card-body h3 {
   font-size: var(--heading-font-size-l);
   color: var(--text-color);
   margin-bottom: var(--spacing-s);
 }
 
-.cards-tool .cards-card-body a {
+.cards.tool .cards-card-body a {
   display: inline-block;
   padding: var(--button-padding-small);
   border: 1px solid var(--rbc-blue);
@@ -43,26 +43,26 @@
   transition: var(--button-transition);
 }
 
-.cards-tool .cards-card-body a:hover {
+.cards.tool .cards-card-body a:hover {
   background-color: var(--rbc-blue);
   color: #fff;
   text-decoration: none;
 }
 
-.cards-tool .cards-card-image {
+.cards.tool .cards-card-image {
   flex-shrink: 0;
   line-height: 0;
   margin-left: var(--spacing-m);
 }
 
-.cards-tool > ul > li img {
+.cards.tool > ul > li img {
   width: 120px;
   height: auto;
   object-fit: contain;
 }
 
 @media (width >= 600px) {
-  .cards-tool > ul {
+  .cards.tool > ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }

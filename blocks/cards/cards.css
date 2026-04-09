@@ -1,5 +1,17 @@
 @import url('./cards-tokens.css');
 
+/* Variant CSS imports */
+@import url('../cards-category/cards-category-tokens.css');
+@import url('../cards-category/cards-category.css');
+@import url('../cards-tool/cards-tool-tokens.css');
+@import url('../cards-tool/cards-tool.css');
+@import url('../cards-product/cards-product-tokens.css');
+@import url('../cards-product/cards-product.css');
+@import url('../cards-type/cards-type-tokens.css');
+@import url('../cards-type/cards-type.css');
+@import url('../cards-article/cards-article-tokens.css');
+@import url('../cards-article/cards-article.css');
+
 .cards > ul {
   list-style: none;
   margin: 0;

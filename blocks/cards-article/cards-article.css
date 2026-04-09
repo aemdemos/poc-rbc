@@ -1,6 +1,6 @@
 @import url('./cards-article-tokens.css');
 
-.cards-article > ul {
+.cards.article > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -9,27 +9,27 @@
   gap: var(--cards-article-grid-gap);
 }
 
-.cards-article > ul > li {
+.cards.article > ul > li {
   background-color: var(--background-color);
   overflow: hidden;
 }
 
-.cards-article .cards-card-image {
+.cards.article .cards-card-image {
   line-height: 0;
 }
 
-.cards-article > ul > li img {
+.cards.article > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: var(--card-border-radius);
 }
 
-.cards-article .cards-card-body {
+.cards.article .cards-card-body {
   margin: var(--spacing-s) 0 0;
 }
 
-.cards-article .cards-card-body a {
+.cards.article .cards-card-body a {
   color: var(--text-color);
   font-weight: var(--weight-bold);
   font-size: var(--heading-font-size-xs);
@@ -38,6 +38,6 @@
   text-decoration: none;
 }
 
-.cards-article .cards-card-body a:hover {
+.cards.article .cards-card-body a:hover {
   color: var(--rbc-blue);
 }
