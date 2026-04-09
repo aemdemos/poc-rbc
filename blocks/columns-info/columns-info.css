@@ -3,10 +3,14 @@
 .columns-info > div {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-m);
 }
 
 .columns-info img {
   width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
 }
 
 .columns-info > div > div {
@@ -15,10 +19,20 @@
 
 .columns-info > div > .columns-info-img-col {
   order: 0;
+  text-align: center;
 }
 
 .columns-info > div > .columns-info-img-col img {
   display: block;
+}
+
+.columns-info h2 {
+  color: var(--rbc-blue);
+}
+
+.columns-info p {
+  color: var(--text-color-muted);
+  line-height: 1.6;
 }
 
 @media (width >= 900px) {
@@ -31,5 +45,9 @@
   .columns-info > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns-info img {
+    max-width: unset;
   }
 }

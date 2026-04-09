@@ -1,3 +1,3 @@
-export default function decorate(block) {
-  // hero-promo block decoration
+export default function decorate() {
+  // hero-promo is CSS-only — no DOM transformation needed
 }

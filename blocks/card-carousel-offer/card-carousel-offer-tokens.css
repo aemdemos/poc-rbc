@@ -3,10 +3,10 @@
   --card-carousel-offer-slide-min-width: 257px;
   --card-carousel-offer-gap: 24px;
   --card-carousel-offer-card-border-width: 1px;
-  --card-carousel-offer-card-border-color: #dadada;
-  --card-carousel-offer-card-body-margin: 16px;
-  --card-carousel-offer-image-aspect-ratio: 4 / 3;
-  --card-carousel-offer-image-object-fit: cover;
+  --card-carousel-offer-card-border-color: #e8e8e8;
+  --card-carousel-offer-card-body-margin: 20px;
+  --card-carousel-offer-image-aspect-ratio: 3 / 2;
+  --card-carousel-offer-image-object-fit: contain;
   --card-carousel-offer-indicators-gap: 6px 12px;
   --card-carousel-offer-indicators-padding: 12px;
   --card-carousel-offer-indicator-size: 24px;

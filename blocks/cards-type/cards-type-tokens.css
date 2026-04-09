@@ -1,8 +1,8 @@
 :root {
-  --cards-type-grid-min-width: 257px;
+  --cards-type-grid-min-width: 230px;
   --cards-type-grid-gap: 24px;
   --cards-type-card-border-width: 1px;
-  --cards-type-card-border-color: #dadada;
+  --cards-type-card-border-color: #e8e8e8;
   --cards-type-card-body-margin: 16px;
   --cards-type-image-aspect-ratio: 4 / 3;
   --cards-type-image-object-fit: cover;

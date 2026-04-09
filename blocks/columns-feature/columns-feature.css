@@ -3,33 +3,42 @@
 .columns-feature > div {
   display: flex;
   flex-direction: column;
-}
-
-.columns-feature img {
-  width: 100%;
+  gap: var(--spacing-l);
 }
 
 .columns-feature > div > div {
-  order: 1;
+  background-color: var(--cool-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--spacing-l);
 }
 
-.columns-feature > div > .columns-feature-img-col {
-  order: 0;
+.columns-feature img {
+  max-width: 100%;
+  height: auto;
 }
 
-.columns-feature > div > .columns-feature-img-col img {
-  display: block;
+.columns-feature h3 {
+  color: var(--rbc-blue);
+  margin-bottom: var(--spacing-s);
+}
+
+.columns-feature p {
+  color: var(--text-color-muted);
+}
+
+.columns-feature hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: var(--spacing-m) 0;
 }
 
 @media (width >= 900px) {
   .columns-feature > div {
-    align-items: center;
-    flex-direction: unset;
+    flex-direction: row;
     gap: var(--columns-feature-gap);
   }
 
   .columns-feature > div > div {
     flex: 1;
-    order: unset;
   }
 }

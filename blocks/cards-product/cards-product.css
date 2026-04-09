@@ -12,6 +12,37 @@
 .cards-product > ul > li {
   border: var(--cards-product-card-border-width) solid var(--cards-product-card-border-color);
   background-color: var(--background-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.cards-product > ul > li:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.cards-product .cards-card-body h4 {
+  color: var(--text-color);
+  font-size: var(--heading-font-size-s);
+}
+
+.cards-product .cards-card-body strong {
+  color: var(--rbc-blue);
+  font-size: var(--body-font-size-s);
+}
+
+.cards-product .cards-card-body ul {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-muted);
+  padding-left: 20px;
+}
+
+.cards-product .cards-card-image img {
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  padding: 20px;
+  background-color: var(--cool-white);
 }
 
 .cards-product .cards-card-body {

@@ -1,11 +1,11 @@
 /* accordion-faq design tokens */
 :root {
   --accordion-faq-item-border-width: 1px;
-  --accordion-faq-item-border-color: #dadada;
-  --accordion-faq-item-gap: 24px;
-  --accordion-faq-label-padding-x: 16px;
-  --accordion-faq-label-padding-right: 46px;
-  --accordion-faq-label-icon-right: 18px;
-  --accordion-faq-body-padding-x: 16px;
+  --accordion-faq-item-border-color: #d7d7d7;
+  --accordion-faq-item-gap: 0;
+  --accordion-faq-label-padding-x: 20px;
+  --accordion-faq-label-padding-right: 50px;
+  --accordion-faq-label-icon-right: 20px;
+  --accordion-faq-body-padding-x: 20px;
   --accordion-faq-transition-duration: 0.2s;
 }

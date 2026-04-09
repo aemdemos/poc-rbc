@@ -1,9 +1,10 @@
 :root {
-  --cards-category-grid-min-width: 257px;
-  --cards-category-grid-gap: 24px;
-  --cards-category-card-border-width: 1px;
-  --cards-category-card-border-color: #dadada;
-  --cards-category-card-body-margin: 16px;
-  --cards-category-image-aspect-ratio: 4 / 3;
-  --cards-category-image-object-fit: cover;
+  --cards-category-grid-min-width: 90px;
+  --cards-category-grid-gap: 12px;
+  --cards-category-card-border-width: 0;
+  --cards-category-card-border-color: transparent;
+  --cards-category-card-body-margin: 8px 0 0;
+  --cards-category-image-aspect-ratio: 1 / 1;
+  --cards-category-image-object-fit: contain;
+  --cards-category-icon-size: 48px;
 }

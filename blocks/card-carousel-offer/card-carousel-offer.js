@@ -14,6 +14,7 @@ export default function decorate(block) {
   const isSingleSlide = rows.length < 2;
 
   const container = document.createElement('div');
+  // eslint-disable-next-line secure-coding/no-hardcoded-credentials
   container.classList.add('card-carousel-offer-slides-container');
 
   const slidesWrapper = document.createElement('ul');
@@ -22,7 +23,7 @@ export default function decorate(block) {
   slidesWrapper.setAttribute('aria-label', 'Card carousel slides');
 
   if (!isSingleSlide) {
-    const { indicatorsNav, buttonsContainer } = createSliderControls(rows.length, {
+    const { buttonsContainer } = createSliderControls(rows.length, {
       indicatorsAriaLabel: `Card Carousel Slide Controls for ${blockId}`,
     });
     container.append(buttonsContainer);
