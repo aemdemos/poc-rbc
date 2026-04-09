@@ -14,7 +14,9 @@ export default function transform(hookName, element, payload) {
     const { template } = payload;
     if (!template || !template.sections || template.sections.length < 2) return;
 
-    const { document } = element.ownerDocument ? { document: element.ownerDocument } : { document: element.getRootNode() };
+    const { document } = element.ownerDocument
+      ? { document: element.ownerDocument }
+      : { document: element.getRootNode() };
 
     // Process sections in reverse order to avoid shifting DOM positions
     const sections = [...template.sections].reverse();
