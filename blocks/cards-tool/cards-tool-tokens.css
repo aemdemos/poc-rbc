@@ -1,0 +1,9 @@
+:root {
+  --cards-tool-grid-min-width: 257px;
+  --cards-tool-grid-gap: 24px;
+  --cards-tool-card-border-width: 1px;
+  --cards-tool-card-border-color: #dadada;
+  --cards-tool-card-body-margin: 16px;
+  --cards-tool-image-aspect-ratio: 4 / 3;
+  --cards-tool-image-object-fit: cover;
+}

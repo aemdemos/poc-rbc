@@ -1,0 +1,21 @@
+/* card-carousel-offer design tokens */
+:root {
+  --card-carousel-offer-slide-min-width: 257px;
+  --card-carousel-offer-gap: 24px;
+  --card-carousel-offer-card-border-width: 1px;
+  --card-carousel-offer-card-border-color: #dadada;
+  --card-carousel-offer-card-body-margin: 16px;
+  --card-carousel-offer-image-aspect-ratio: 4 / 3;
+  --card-carousel-offer-image-object-fit: cover;
+  --card-carousel-offer-indicators-gap: 6px 12px;
+  --card-carousel-offer-indicators-padding: 12px;
+  --card-carousel-offer-indicator-size: 24px;
+  --card-carousel-offer-indicator-background: #dadada;
+  --card-carousel-offer-indicator-active-background: var(--text-color);
+  --card-carousel-offer-nav-inset: 12px;
+  --card-carousel-offer-nav-inset-desktop: 24px;
+  --card-carousel-offer-nav-button-size: 44px;
+  --card-carousel-offer-nav-button-background: rgb(19 19 19 / 25%);
+  --card-carousel-offer-nav-button-hover-background: rgb(19 19 19 / 75%);
+  --card-carousel-offer-transition-duration: 0.2s;
+}

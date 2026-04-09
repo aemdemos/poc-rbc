@@ -1,0 +1,11 @@
+/* accordion-faq design tokens */
+:root {
+  --accordion-faq-item-border-width: 1px;
+  --accordion-faq-item-border-color: #dadada;
+  --accordion-faq-item-gap: 24px;
+  --accordion-faq-label-padding-x: 16px;
+  --accordion-faq-label-padding-right: 46px;
+  --accordion-faq-label-icon-right: 18px;
+  --accordion-faq-body-padding-x: 16px;
+  --accordion-faq-transition-duration: 0.2s;
+}

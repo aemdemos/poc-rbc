@@ -1,0 +1,195 @@
+{
+  "templates": [
+    {
+      "name": "credit-cards-hub",
+      "urls": [
+        "https://www.rbcroyalbank.com/credit-cards/index.html"
+      ],
+      "description": "Credit cards landing/hub page featuring hero banner, card category navigation, promotional offers carousel, card comparison tools, featured credit card listings, card type exploration with benefits, mobile app promotion, awards section, resource articles, and FAQ accordion.",
+      "blocks": [
+        {
+          "name": "hero-promo",
+          "instances": [
+            "#banner-text .banner"
+          ]
+        },
+        {
+          "name": "cards-category",
+          "instances": [
+            "#category-buttons .category-button-grid"
+          ]
+        },
+        {
+          "name": "columns-info",
+          "instances": [
+            "#what-is-cc .what-is-cc-container"
+          ]
+        },
+        {
+          "name": "card-carousel-offer",
+          "instances": [
+            ".offer-carousel-container"
+          ]
+        },
+        {
+          "name": "cards-tool",
+          "instances": [
+            "#what-is-cc ~ section.section-cool-white .section-inner"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#card-grid-container"
+          ]
+        },
+        {
+          "name": "cards-type",
+          "instances": [
+            "#card-type .grid-wpr"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "#card-type ~ section:has(.phone-block-wpr) > .section-inner > .grid-wpr.eh-wpr"
+          ]
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            "section:not(.section-cool-white):has(h2.mar-b.text-center) .grid-wpr.eh-wpr"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#accordionSet2"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Banner",
+          "selector": "#banner-text",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Card Category Navigation",
+          "selector": "#category-buttons",
+          "style": "cool-white",
+          "blocks": [
+            "cards-category"
+          ],
+          "defaultContent": [
+            "#category-buttons .category-menu-heading"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "What is a Credit Card",
+          "selector": "#what-is-cc",
+          "style": null,
+          "blocks": [
+            "columns-info"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Best Current Offers Carousel",
+          "selector": "#what-is-cc ~ section:has(.offer-carousel-container)",
+          "style": null,
+          "blocks": [
+            "card-carousel-offer"
+          ],
+          "defaultContent": [
+            "#what-is-cc ~ section:has(.offer-carousel-container) h2"
+          ]
+        },
+        {
+          "id": "section-5",
+          "name": "Find and Compare Tools",
+          "selector": "#what-is-cc ~ section.section-cool-white",
+          "style": "cool-white",
+          "blocks": [
+            "cards-tool"
+          ],
+          "defaultContent": [
+            "#what-is-cc ~ section.section-cool-white > .section-inner > h2"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Popular Credit Cards",
+          "selector": "section:has(#card-grid-container)",
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            ".subheading-title",
+            ".subheading-paragraph"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "Credit Card Types",
+          "selector": "#card-type",
+          "style": null,
+          "blocks": [
+            "cards-type"
+          ],
+          "defaultContent": [
+            "#card-type > .section-inner > h2",
+            "#card-type > .section-inner > p"
+          ]
+        },
+        {
+          "id": "section-8",
+          "name": "More Features",
+          "selector": "#card-type ~ section:has(.phone-block-wpr)",
+          "style": null,
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": [
+            ".how-to-apply-title"
+          ]
+        },
+        {
+          "id": "section-9",
+          "name": "Credit Card Resources",
+          "selector": "#card-type ~ section:has(h2.mar-b.text-center)",
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            "#card-type ~ section:has(h2.mar-b.text-center) h2",
+            "#card-type ~ section:has(h2.mar-b.text-center) > .section-inner > p"
+          ]
+        },
+        {
+          "id": "section-10",
+          "name": "FAQ",
+          "selector": "section:has(#accordionSet2)",
+          "style": null,
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": [
+            "section:has(#accordionSet2) h2",
+            "section:has(#accordionSet2) .text-center a"
+          ]
+        }
+      ]
+    }
+  ]
+}

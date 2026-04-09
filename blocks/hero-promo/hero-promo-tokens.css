@@ -1,0 +1,7 @@
+/* hero-promo design tokens */
+:root {
+  --hero-promo-padding: 40px 24px;
+  --hero-promo-padding-desktop: 40px 32px;
+  --hero-promo-min-height: 300px;
+  --hero-promo-heading-max-width: 1200px;
+}
