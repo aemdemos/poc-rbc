@@ -1,120 +1,125 @@
 @import url('./hero-promo-tokens.css');
 
-/* Full-bleed hero — section background provides the beach photo */
+/*
+ * Hero Promo — full-bleed section background with content on the right.
+ * Beach photo = section-metadata background-image (handled by global .bg-image CSS).
+ * Gradient overlay fades left-to-right for text readability.
+ * Content (card image + heading + text + CTAs) positioned on right half at desktop.
+ */
+
 .hero-promo-container {
   position: relative;
+  background-color: var(--hero-promo-bg-color);
 }
 
-.hero-promo-container .hero-promo-wrapper {
-  max-width: var(--max-width-site);
-  margin: auto;
-  padding: 0 var(--section-padding-mobile);
-  position: relative;
-  z-index: 2;
-}
-
-.hero-promo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--hero-promo-padding);
-  min-height: var(--hero-promo-min-height);
-}
-
-/* Gradient overlay on the section (between bg-image and content) */
+/* Gradient overlay — z-index between bg-image (0) and wrapper (1, set by global styles) */
 .hero-promo-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
   background: var(--hero-promo-bg-gradient);
   pointer-events: none;
 }
 
-/* First div = card product image */
+/* Content wrapper — z-index: 1 comes from global .bg-image section styles */
+.hero-promo-container .hero-promo-wrapper {
+  max-width: var(--max-width-site);
+  margin: auto;
+  padding: 0 var(--section-padding-mobile);
+}
+
+/* Mobile: simple vertical stack */
+.hero-promo {
+  padding: var(--hero-promo-padding);
+  min-height: var(--hero-promo-min-height);
+}
+
+/* Card image */
 .hero-promo > div:first-child {
   line-height: 0;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-s);
 }
 
 .hero-promo > div:first-child img {
-  max-width: 240px;
+  max-width: 140px;
   height: auto;
-  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 20%));
 }
 
-/* Second div = text content */
+/* Text content */
 .hero-promo > div:last-child {
   max-width: 500px;
 }
 
 .hero-promo h2 {
   color: var(--text-color);
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-l);
+  margin-top: 0;
   margin-bottom: var(--spacing-xs);
 }
 
 .hero-promo p {
   color: var(--text-color);
+  font-size: var(--body-font-size-m);
 }
 
-.hero-promo .button-container {
+/* CTA links — styled as buttons (links share a <p> so EDS doesn't auto-decorate) */
+.hero-promo > div:last-child p:last-child {
   display: flex;
   gap: var(--spacing-s);
-  justify-content: center;
   flex-wrap: wrap;
+  margin-top: var(--spacing-m);
 }
 
-.hero-promo a.button {
+.hero-promo > div:last-child p:last-child a {
+  display: inline-block;
+  padding: 14px 28px;
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  border-radius: var(--button-border-radius);
+  white-space: nowrap;
+}
+
+.hero-promo > div:last-child p:last-child a:first-child {
   background-color: var(--rbc-blue);
   color: #fff;
 }
 
-.hero-promo a.button:hover {
+.hero-promo > div:last-child p:last-child a:first-child:hover {
   background-color: var(--rbc-blue-dark);
 }
 
-.hero-promo a.button.secondary {
+.hero-promo > div:last-child p:last-child a:last-child {
   background-color: #fff;
   border: 1px solid var(--rbc-blue);
   color: var(--rbc-blue);
 }
 
-.hero-promo a.button.secondary:hover {
+.hero-promo > div:last-child p:last-child a:last-child:hover {
   background-color: var(--rbc-blue);
   color: #fff;
 }
 
-/* Desktop: card image left-ish, text right */
+/* Desktop: content on the right half via margin-left */
 @media (width >= 900px) {
   .hero-promo-container .hero-promo-wrapper {
     padding: 0 var(--section-padding-desktop);
   }
 
   .hero-promo {
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: var(--spacing-xl);
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50%;
     padding: var(--hero-promo-padding-desktop);
     min-height: var(--hero-promo-min-height-desktop);
   }
 
-  .hero-promo > div:first-child {
-    margin-bottom: 0;
-  }
-
   .hero-promo > div:first-child img {
-    max-width: 300px;
-  }
-
-  .hero-promo .button-container {
-    justify-content: flex-start;
+    max-width: 160px;
   }
 
   .hero-promo h2 {
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--heading-font-size-xl);
   }
 }
