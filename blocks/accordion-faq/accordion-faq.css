@@ -1,0 +1,86 @@
+@import url('./accordion-faq-tokens.css');
+
+.accordion-faq > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (width >= 900px) {
+  .accordion-faq > ul {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--spacing-xl);
+  }
+}
+
+.accordion-faq > ul > li {
+  border: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
+  border-bottom: 0;
+}
+
+.accordion-faq > ul > li:last-child {
+  border-bottom: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
+}
+
+.accordion-faq > ul > li + li {
+  margin-top: var(--accordion-faq-item-gap);
+}
+
+.accordion-faq p {
+  margin-bottom: 0.8em;
+}
+
+.accordion-faq .accordion-faq-item-label {
+  position: relative;
+  padding: var(--spacing-s) var(--accordion-faq-label-padding-x);
+  padding-right: var(--accordion-faq-label-padding-right);
+  cursor: pointer;
+  overflow: auto;
+  transition: background-color var(--accordion-faq-transition-duration);
+}
+
+.accordion-faq .accordion-faq-item-label p {
+  margin: 0;
+  font-weight: var(--weight-regular);
+  font-size: var(--body-font-size-m);
+  color: var(--rbc-blue);
+}
+
+.accordion-faq li.active .accordion-faq-item-label {
+  background-color: var(--light-color);
+}
+
+.accordion-faq .accordion-faq-item-label:focus,
+.accordion-faq .accordion-faq-item-label:hover {
+  background-color: var(--light-color);
+}
+
+.accordion-faq .accordion-faq-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: var(--accordion-faq-label-icon-right);
+  transform: translateY(-50%) rotate(135deg);
+  width: 6px;
+  height: 6px;
+  border: 2px solid var(--rbc-blue);
+  border-width: 2px 2px 0 0;
+  transition: transform var(--accordion-faq-transition-duration);
+}
+
+.accordion-faq li.active .accordion-faq-item-label::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.accordion-faq .accordion-faq-item-body {
+  display: none;
+  padding: 0 var(--accordion-faq-body-padding-x);
+}
+
+.accordion-faq li.active .accordion-faq-item-body {
+  display: block;
+  border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
+  background-color: var(--background-color);
+}

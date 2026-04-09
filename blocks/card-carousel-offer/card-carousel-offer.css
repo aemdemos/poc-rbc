@@ -1,0 +1,145 @@
+@import url('./card-carousel-offer-tokens.css');
+
+.card-carousel-offer .card-carousel-offer-slides-container {
+  position: relative;
+}
+
+.card-carousel-offer .card-carousel-offer-slides,
+.card-carousel-offer .carousel-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card-carousel-offer .card-carousel-offer-slides-container > ul.card-carousel-offer-slides {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(var(--card-carousel-offer-slide-min-width), 1fr);
+  gap: var(--card-carousel-offer-gap);
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.card-carousel-offer .card-carousel-offer-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.card-carousel-offer .card-carousel-offer-slide {
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  border: var(--card-carousel-offer-card-border-width) solid var(--card-carousel-offer-card-border-color);
+  background-color: var(--background-color);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spacing-l);
+  min-height: 380px;
+}
+
+.card-carousel-offer .card-carousel-offer-slide h2 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color);
+  margin-top: var(--spacing-s);
+}
+
+.card-carousel-offer .cards-card-body {
+  margin: 0;
+  flex: 1;
+}
+
+.card-carousel-offer .cards-card-image {
+  line-height: 0;
+  text-align: right;
+  margin-top: auto;
+}
+
+.card-carousel-offer .card-carousel-offer-slide img {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.card-carousel-offer .carousel-slide-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--card-carousel-offer-indicators-gap);
+  padding: var(--card-carousel-offer-indicators-padding);
+  background-color: var(--light-color);
+  line-height: 0;
+}
+
+.card-carousel-offer .carousel-slide-indicator button {
+  width: var(--card-carousel-offer-indicator-size);
+  height: var(--card-carousel-offer-indicator-size);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--card-carousel-offer-indicator-background);
+  transition: background-color var(--card-carousel-offer-transition-duration);
+}
+
+.card-carousel-offer .carousel-slide-indicator button:disabled,
+.card-carousel-offer .carousel-slide-indicator button:hover,
+.card-carousel-offer .carousel-slide-indicator button:focus-visible {
+  background-color: var(--card-carousel-offer-indicator-active-background);
+}
+
+.card-carousel-offer .carousel-navigation-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--card-carousel-offer-nav-inset);
+  right: var(--card-carousel-offer-nav-inset);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.card-carousel-offer .carousel-navigation-buttons button {
+  position: relative;
+  width: var(--card-carousel-offer-nav-button-size);
+  height: var(--card-carousel-offer-nav-button-size);
+  margin: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: var(--card-carousel-offer-nav-button-background);
+  color: #fff;
+  transition: background-color var(--card-carousel-offer-transition-duration);
+}
+
+.card-carousel-offer .carousel-navigation-buttons button:hover,
+.card-carousel-offer .carousel-navigation-buttons button:focus-visible {
+  background-color: var(--card-carousel-offer-nav-button-hover-background);
+}
+
+.card-carousel-offer .carousel-navigation-buttons button::after {
+  display: block;
+  content: '';
+  border: 2px solid #fff;
+  border-bottom: 0;
+  border-left: 0;
+  height: 12px;
+  width: 12px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 2px);
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.card-carousel-offer .carousel-navigation-buttons button.slide-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+  left: calc(50% - 2px);
+}
+
+@media (width >= 600px) {
+  .card-carousel-offer .carousel-navigation-buttons {
+    left: var(--card-carousel-offer-nav-inset-desktop);
+    right: var(--card-carousel-offer-nav-inset-desktop);
+  }
+}

@@ -1,0 +1,4 @@
+/* columns-feature design tokens */
+:root {
+  --columns-feature-gap: 40px;
+}

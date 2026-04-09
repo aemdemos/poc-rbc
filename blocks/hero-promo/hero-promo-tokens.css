@@ -1,0 +1,9 @@
+/* hero-promo design tokens */
+:root {
+  --hero-promo-padding: 40px 24px;
+  --hero-promo-padding-desktop: 40px 32px;
+  --hero-promo-min-height: 340px;
+  --hero-promo-min-height-desktop: 440px;
+  --hero-promo-bg-gradient: linear-gradient(270deg, #f0f6f9 0%, rgb(240 246 249 / 0%) 100%);
+  --hero-promo-bg-color: #f0f6f9;
+}

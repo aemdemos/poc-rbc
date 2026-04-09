@@ -1,0 +1,116 @@
+@import url('./hero-promo-tokens.css');
+
+/* Full-bleed hero */
+.hero-promo-container .hero-promo-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-promo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--hero-promo-padding);
+  min-height: var(--hero-promo-min-height);
+  background-color: var(--hero-promo-bg-color);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* First div = background image container */
+.hero-promo > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-promo > div:first-child picture,
+.hero-promo > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient overlay — fades photo to light on the right */
+.hero-promo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-promo-bg-gradient);
+}
+
+/* Second div = content */
+.hero-promo > div:last-child {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.hero-promo h2 {
+  color: var(--text-color);
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-promo p {
+  color: var(--text-color);
+}
+
+/* Card image in the hero */
+.hero-promo > div:last-child > p:first-child img {
+  max-width: 180px;
+  height: auto;
+}
+
+.hero-promo .button-container {
+  display: flex;
+  gap: var(--spacing-s);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-promo a.button {
+  background-color: var(--rbc-blue);
+  color: #fff;
+}
+
+.hero-promo a.button:hover {
+  background-color: var(--rbc-blue-dark);
+}
+
+.hero-promo a.button.secondary {
+  background-color: #fff;
+  border: 1px solid var(--rbc-blue);
+  color: var(--rbc-blue);
+}
+
+.hero-promo a.button.secondary:hover {
+  background-color: var(--rbc-blue);
+  color: #fff;
+}
+
+@media (width >= 900px) {
+  .hero-promo {
+    padding: var(--hero-promo-padding-desktop);
+    min-height: var(--hero-promo-min-height-desktop);
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: left;
+  }
+
+  .hero-promo > div:last-child {
+    margin-right: 5%;
+  }
+
+  .hero-promo .button-container {
+    justify-content: flex-start;
+  }
+
+  .hero-promo h2 {
+    font-size: var(--heading-font-size-xxl);
+  }
+}

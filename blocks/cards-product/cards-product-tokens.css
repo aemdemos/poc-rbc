@@ -1,0 +1,9 @@
+:root {
+  --cards-product-grid-min-width: 300px;
+  --cards-product-grid-gap: 24px;
+  --cards-product-card-border-width: 1px;
+  --cards-product-card-border-color: #e8e8e8;
+  --cards-product-card-body-margin: 16px;
+  --cards-product-image-aspect-ratio: 4 / 3;
+  --cards-product-image-object-fit: cover;
+}

@@ -1,0 +1,68 @@
+@import url('./cards-tool-tokens.css');
+
+.cards.tool > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cards-tool-grid-gap);
+}
+
+.cards.tool > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cool-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--spacing-l);
+  min-height: 150px;
+  overflow: hidden;
+}
+
+.cards.tool .cards-card-body {
+  flex: 1;
+  margin: 0;
+}
+
+.cards.tool .cards-card-body h3 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color);
+  margin-bottom: var(--spacing-s);
+}
+
+.cards.tool .cards-card-body a {
+  display: inline-block;
+  padding: var(--button-padding-small);
+  border: 1px solid var(--rbc-blue);
+  border-radius: var(--button-border-radius);
+  color: var(--rbc-blue);
+  font-weight: var(--weight-medium);
+  font-size: var(--body-font-size-s);
+  text-decoration: none;
+  transition: var(--button-transition);
+}
+
+.cards.tool .cards-card-body a:hover {
+  background-color: var(--rbc-blue);
+  color: #fff;
+  text-decoration: none;
+}
+
+.cards.tool .cards-card-image {
+  flex-shrink: 0;
+  line-height: 0;
+  margin-left: var(--spacing-m);
+}
+
+.cards.tool > ul > li img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (width >= 600px) {
+  .cards.tool > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
