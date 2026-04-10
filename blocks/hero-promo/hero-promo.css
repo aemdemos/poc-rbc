@@ -14,11 +14,26 @@
   margin-top: 0;
 }
 
-/* Gradient overlay — sits between bg-image (z:0) and wrapper (z:1) */
+/* Background image — max 1920px wide, contained within section height */
+.hero-promo-container > .bg-image {
+  max-width: 1920px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.hero-promo-container > .bg-image img {
+  object-position: left center;
+}
+
+/* Gradient overlay — matches bg-image width */
 .hero-promo-container::after {
   content: '';
   position: absolute;
   inset: 0;
+  max-width: 1920px;
+  margin: 0 auto;
   z-index: 0;
   background: var(--hero-promo-bg-gradient);
   pointer-events: none;
