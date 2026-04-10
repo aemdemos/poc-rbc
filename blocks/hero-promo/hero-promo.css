@@ -81,6 +81,19 @@ main > .section.hero-promo-container > .bg-image {
   margin: 0 0 12px;
 }
 
+/* Legal footnote superscripts — match source's small inline style */
+.hero-promo > div:last-child p a:has(sup) {
+  font-size: 0.6em;
+  vertical-align: super;
+  text-decoration: none;
+  color: var(--rbc-blue);
+  line-height: 0;
+}
+
+.hero-promo > div:last-child p a sup {
+  font-size: inherit;
+}
+
 /* Make the first p (promotional text with bold points) larger */
 .hero-promo > div:last-child p:first-of-type {
   font-size: 18px;
