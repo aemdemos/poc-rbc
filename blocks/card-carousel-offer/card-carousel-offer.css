@@ -1,10 +1,8 @@
 @import url('./card-carousel-offer-tokens.css');
 
 /*
- * Section heading above carousel — "Explore Our Best Current Credit Card Offers"
- * Hide the broken chevron arrow images from the import.
+ * Section heading — hide broken chevron images from import.
  */
-.card-carousel-offer-wrapper + .default-content-wrapper + .card-carousel-offer-wrapper,
 .columns-info-wrapper ~ .default-content-wrapper p img {
   display: none;
 }
@@ -21,11 +19,9 @@
 
 /*
  * Card Carousel Offer — horizontal scrolling carousel of promotional credit card offers.
- * Source: flex layout, 30px gap, items ~570px wide, rounded 13px borders,
- * badges (colored tags), heading+description top, card image+buttons bottom.
+ * Source: flex, 30px gap, items ~570px, rounded 13px, badges, text top, image+buttons bottom.
  */
 
-/* Slides container */
 .card-carousel-offer .card-carousel-offer-slides-container {
   position: relative;
 }
@@ -45,6 +41,7 @@
   scroll-snap-type: x mandatory;
   overflow: auto hidden;
   scrollbar-width: none;
+  padding: 8px 0;
 }
 
 .card-carousel-offer .card-carousel-offer-slides::-webkit-scrollbar {
@@ -60,19 +57,26 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 32px 24px 24px 32px;
-  min-width: 340px;
+  min-width: 300px;
   min-height: 380px;
   flex-shrink: 0;
 }
 
-/* Card image — sits at bottom right of card */
+/* Flip order: text body on top, card image at bottom */
+.card-carousel-offer .cards-card-body {
+  margin: 0;
+  flex: 1;
+  order: 1;
+}
+
 .card-carousel-offer .cards-card-image {
-  line-height: 0;
-  text-align: right;
-  margin-top: auto;
   order: 2;
+  line-height: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: auto;
 }
 
 .card-carousel-offer .card-carousel-offer-slide img {
@@ -81,14 +85,7 @@
   object-fit: contain;
 }
 
-/* Card body — text content at top */
-.card-carousel-offer .cards-card-body {
-  margin: 0;
-  flex: 1;
-  order: 1;
-}
-
-/* Badge tags (REWARDS, TRAVEL, AWARD WINNING, etc.) */
+/* Badge tags (REWARDS, TRAVEL, SPECIAL OFFER, etc.) */
 .card-carousel-offer .cards-card-body > p:first-child,
 .card-carousel-offer .cards-card-body > p:nth-child(2),
 .card-carousel-offer .cards-card-body > p:nth-child(3) {
@@ -100,20 +97,15 @@
   margin: 0 4px 8px 0;
   text-transform: uppercase;
   line-height: 1.4;
+  background-color: transparent;
+  border: 1px solid #919191;
+  color: var(--text-color);
 }
 
 /* First badge — yellow for special offers/awards */
 .card-carousel-offer .cards-card-body > p:first-child {
   background-color: #ffba00;
-  color: var(--text-color);
-}
-
-/* Additional badges — outlined grey */
-.card-carousel-offer .cards-card-body > p:nth-child(2),
-.card-carousel-offer .cards-card-body > p:nth-child(3) {
-  background-color: transparent;
-  border: 1px solid #919191;
-  color: var(--text-color);
+  border-color: #ffba00;
 }
 
 /* Main promotional heading */
@@ -125,8 +117,8 @@
   margin: 12px 0 8px;
 }
 
-/* Description text */
-.card-carousel-offer .cards-card-body > p:nth-last-child(-n+3):not(:first-child, :nth-child(2), :nth-child(3)) {
+/* Description/sub text */
+.card-carousel-offer .cards-card-body p {
   font-size: 16px;
   color: var(--text-color);
   font-weight: 300;
@@ -134,13 +126,12 @@
   margin: 0 0 4px;
 }
 
-/* Bottom area: CTA buttons + card image side by side */
-.card-carousel-offer .card-carousel-offer-slide > li {
-  display: flex;
-  flex-direction: column;
+/* CTA row: Apply Now button + View More Details link */
+.card-carousel-offer .cards-card-body > p:nth-last-child(1),
+.card-carousel-offer .cards-card-body > p:nth-last-child(2) {
+  display: inline;
 }
 
-/* Apply Now button */
 .card-carousel-offer .cards-card-body a[href*="apply"] {
   display: inline-block;
   padding: 12px 15px;
@@ -151,31 +142,82 @@
   text-decoration: none;
   border-radius: 1px;
   margin-right: 12px;
+  margin-top: 12px;
 }
 
 .card-carousel-offer .cards-card-body a[href*="apply"]:hover {
   background-color: var(--rbc-blue-dark);
 }
 
-/* View More Details link */
 .card-carousel-offer .cards-card-body p:last-child a:not([href*="apply"]) {
   font-size: 16px;
   color: var(--rbc-blue);
   text-decoration: none;
+  font-weight: 300;
 }
 
 .card-carousel-offer .cards-card-body p:last-child a:not([href*="apply"]):hover {
   text-decoration: underline;
 }
 
-/* Navigation buttons — positioned at right side of heading area */
+/* Navigation prev/next buttons — positioned above carousel, right-aligned */
 .card-carousel-offer .carousel-navigation-buttons {
-  display: none;
+  position: static;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 16px;
+  transform: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.card-carousel-offer .carousel-navigation-buttons button {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid var(--rbc-blue);
+  color: var(--rbc-blue);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.card-carousel-offer .carousel-navigation-buttons button:hover,
+.card-carousel-offer .carousel-navigation-buttons button:focus-visible {
+  background-color: var(--rbc-blue);
+  color: #fff;
+}
+
+.card-carousel-offer .carousel-navigation-buttons button::after {
+  display: block;
+  content: '';
+  border: 2px solid var(--rbc-blue);
+  border-bottom: 0;
+  border-left: 0;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 1px);
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.card-carousel-offer .carousel-navigation-buttons button:hover::after,
+.card-carousel-offer .carousel-navigation-buttons button:focus-visible::after {
+  border-color: #fff;
+}
+
+.card-carousel-offer .carousel-navigation-buttons button.slide-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+  left: calc(50% - 1px);
 }
 
 @media (width >= 600px) {
   .card-carousel-offer .card-carousel-offer-slide {
-    min-width: 500px;
+    min-width: 460px;
   }
 }
 
