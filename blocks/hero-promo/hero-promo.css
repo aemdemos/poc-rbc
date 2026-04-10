@@ -1,116 +1,173 @@
 @import url('./hero-promo-tokens.css');
 
-/* Full-bleed hero */
-.hero-promo-container .hero-promo-wrapper {
-  max-width: unset;
-  padding: 0;
-}
+/*
+ * Hero Promo — full-bleed background image with content on the right.
+ * Beach photo = section-metadata background-image (global .bg-image CSS).
+ * Gradient overlay fades right for text readability.
+ * Content (card image + heading + text + CTAs) on right half at desktop.
+ * Source: full-bleed, fixed 500px height, content in 1200px centered wrapper.
+ */
 
-.hero-promo {
+main > .section.hero-promo-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--hero-promo-padding);
-  min-height: var(--hero-promo-min-height);
   background-color: var(--hero-promo-bg-color);
+  margin-top: 0;
+  height: var(--hero-promo-height-desktop);
+  padding: 0;
   overflow: hidden;
-  text-align: center;
 }
 
-/* First div = background image container */
-.hero-promo > div:first-child {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+/* Background image — max 1920px wide */
+main > .section.hero-promo-container > .bg-image {
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
-.hero-promo > div:first-child picture,
-.hero-promo > div:first-child img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Gradient overlay — fades photo to light on the right */
-.hero-promo::after {
+/* Gradient overlay */
+.hero-promo-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
   background: var(--hero-promo-bg-gradient);
+  pointer-events: none;
 }
 
-/* Second div = content */
-.hero-promo > div:last-child {
-  position: relative;
-  z-index: 2;
-  max-width: 500px;
+/* Content wrapper — constrained to 1200px, centered, full height for vertical centering */
+.hero-promo-container .hero-promo-wrapper {
+  max-width: var(--max-width-site);
+  margin: auto;
+  padding: 0 var(--section-padding-mobile);
+  height: 100%;
 }
 
-.hero-promo h2 {
-  color: var(--text-color);
-  font-size: var(--heading-font-size-xl);
-  margin-bottom: var(--spacing-xs);
+/* Mobile: simple vertical stack */
+.hero-promo {
+  padding: var(--hero-promo-padding);
+  min-height: var(--hero-promo-min-height);
 }
 
-.hero-promo p {
-  color: var(--text-color);
+/* Card image */
+.hero-promo > div:first-child {
+  line-height: 0;
+  margin-bottom: 24px;
 }
 
-/* Card image in the hero */
-.hero-promo > div:last-child > p:first-child img {
-  max-width: 180px;
+.hero-promo > div:first-child img {
+  max-width: 140px;
   height: auto;
 }
 
-.hero-promo .button-container {
-  display: flex;
-  gap: var(--spacing-s);
-  justify-content: center;
-  flex-wrap: wrap;
+/* Text content */
+.hero-promo > div:last-child {
+  max-width: 600px;
 }
 
-.hero-promo a.button {
+/* Card name heading — matches source 36px/500/RBCDisplay */
+.hero-promo h2 {
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: var(--weight-medium);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+/* Promo text — source uses 24px h4 style for the main selling line */
+.hero-promo > div:last-child p {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+/* Legal footnote superscripts — match source's small inline style */
+.hero-promo > div:last-child p a:has(sup) {
+  font-size: 0.6em;
+  vertical-align: super;
+  text-decoration: none;
+  color: var(--rbc-blue);
+  line-height: 0;
+}
+
+.hero-promo > div:last-child p a sup {
+  font-size: inherit;
+}
+
+/* Make the first p (promotional text with bold points) larger */
+.hero-promo > div:last-child p:first-of-type {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* CTA links — styled as buttons matching source exactly */
+.hero-promo > div:last-child p:last-child {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.hero-promo > div:last-child p:last-child a {
+  display: inline-block;
+  padding: 20px 32px;
+  font-size: 16px;
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  border-radius: 1px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.hero-promo > div:last-child p:last-child a:first-child {
   background-color: var(--rbc-blue);
   color: #fff;
+  border: none;
 }
 
-.hero-promo a.button:hover {
+.hero-promo > div:last-child p:last-child a:first-child:hover {
   background-color: var(--rbc-blue-dark);
 }
 
-.hero-promo a.button.secondary {
+.hero-promo > div:last-child p:last-child a:last-child {
   background-color: #fff;
   border: 1px solid var(--rbc-blue);
   color: var(--rbc-blue);
 }
 
-.hero-promo a.button.secondary:hover {
+.hero-promo > div:last-child p:last-child a:last-child:hover {
   background-color: var(--rbc-blue);
   color: #fff;
 }
 
+/* Desktop: fixed height, content on right half */
 @media (width >= 900px) {
+  .hero-promo-container .hero-promo-wrapper {
+    padding: 0 var(--section-padding-desktop);
+  }
+
   .hero-promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50%;
     padding: var(--hero-promo-padding-desktop);
-    min-height: var(--hero-promo-min-height-desktop);
-    flex-direction: row;
-    justify-content: flex-end;
-    text-align: left;
+    height: var(--hero-promo-height-desktop);
+    min-height: unset;
   }
 
-  .hero-promo > div:last-child {
-    margin-right: 5%;
-  }
-
-  .hero-promo .button-container {
-    justify-content: flex-start;
+  .hero-promo > div:first-child img {
+    max-width: 160px;
   }
 
   .hero-promo h2 {
-    font-size: var(--heading-font-size-xxl);
+    font-size: 36px;
+    margin: 0 0 15px;
+    line-height: 44px;
+  }
+
+  .hero-promo > div:last-child p:first-of-type {
+    font-size: 24px;
+    line-height: 32px;
   }
 }

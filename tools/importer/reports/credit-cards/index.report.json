@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "url": "https://www.rbcroyalbank.com/credit-cards/index.html",
+  "path": "credit-cards/index",
+  "timestamp": "2026-04-09T22:31:01.962Z",
+  "title": "Apply for a Credit Card Online | RBC Royal Bank of Canada",
+  "template": "credit-cards-hub",
+  "blocks": [
+    "hero-promo",
+    "hero-promo",
+    "hero-promo",
+    "cards-category",
+    "columns-info",
+    "card-carousel-offer",
+    "cards-tool",
+    "cards-product",
+    "cards-type",
+    "columns-feature",
+    "cards-article",
+    "accordion-faq"
+  ]
+}
