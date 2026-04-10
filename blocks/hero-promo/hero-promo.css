@@ -8,7 +8,7 @@
  * Source: full-bleed, fixed 500px height, content in 1200px centered wrapper.
  */
 
-.hero-promo-container {
+main > .section.hero-promo-container {
   position: relative;
   background-color: var(--hero-promo-bg-color);
   margin-top: 0;
