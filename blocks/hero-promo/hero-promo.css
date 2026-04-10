@@ -10,6 +10,7 @@
 .hero-promo-container {
   position: relative;
   background-color: var(--hero-promo-bg-color);
+  margin-top: 0;
 }
 
 /* Gradient overlay — z-index between bg-image (0) and wrapper (1, set by global styles) */
@@ -53,14 +54,17 @@
 
 .hero-promo h2 {
   color: var(--text-color);
-  font-size: var(--heading-font-size-l);
+  font-size: 28px;
+  font-weight: var(--weight-medium);
   margin-top: 0;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 12px;
 }
 
 .hero-promo p {
   color: var(--text-color);
-  font-size: var(--body-font-size-m);
+  font-size: 20px;
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
 }
 
 /* CTA links — styled as buttons (links share a <p> so EDS doesn't auto-decorate) */
@@ -120,7 +124,12 @@
   }
 
   .hero-promo h2 {
-    font-size: var(--heading-font-size-xl);
+    font-size: 36px;
+  }
+
+  .hero-promo p {
+    font-size: 24px;
+    line-height: 1.33;
   }
 }
 
