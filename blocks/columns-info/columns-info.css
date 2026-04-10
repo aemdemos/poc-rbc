@@ -5,16 +5,19 @@
  * text on left, illustration on right. Matches source exactly.
  */
 
-/* Card container with shadow and rounded top corners */
+/* Section wrapper — wider border line at bottom */
+.columns-info-wrapper {
+  max-width: 1400px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 32px;
+}
+
+/* Card container with rounded top corners */
 .columns-info > div {
   display: flex;
   flex-direction: column;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
-  box-shadow:
-    rgb(37 37 37 / 4%) 0 54px 118px 0,
-    rgb(37 37 37 / 6%) 0 12px 26px 0,
-    rgb(37 37 37 / 8%) 0 4px 8px 0;
   padding: 32px;
   overflow: hidden;
 }
