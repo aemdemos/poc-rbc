@@ -33,11 +33,12 @@ main > .section.hero-promo-container > .bg-image {
   pointer-events: none;
 }
 
-/* Content wrapper — constrained to 1200px, centered */
+/* Content wrapper — constrained to 1200px, centered, full height for vertical centering */
 .hero-promo-container .hero-promo-wrapper {
   max-width: var(--max-width-site);
   margin: auto;
   padding: 0 var(--section-padding-mobile);
+  height: 100%;
 }
 
 /* Mobile: simple vertical stack */
@@ -59,7 +60,7 @@ main > .section.hero-promo-container > .bg-image {
 
 /* Text content */
 .hero-promo > div:last-child {
-  max-width: 500px;
+  max-width: 600px;
 }
 
 /* Card name heading — matches source 36px/500/RBCDisplay */
@@ -91,7 +92,7 @@ main > .section.hero-promo-container > .bg-image {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .hero-promo > div:last-child p:last-child a {
@@ -117,7 +118,7 @@ main > .section.hero-promo-container > .bg-image {
 
 .hero-promo > div:last-child p:last-child a:last-child {
   background-color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid var(--rbc-blue);
   color: var(--rbc-blue);
 }
 
