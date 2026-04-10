@@ -50,7 +50,7 @@ main > .section.hero-promo-container > .bg-image {
 /* Card image */
 .hero-promo > div:first-child {
   line-height: 0;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 24px;
 }
 
 .hero-promo > div:first-child img {
@@ -92,7 +92,7 @@ main > .section.hero-promo-container > .bg-image {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 32px;
 }
 
 .hero-promo > div:last-child p:last-child a {
