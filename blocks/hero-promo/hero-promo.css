@@ -123,3 +123,11 @@
     font-size: var(--heading-font-size-xl);
   }
 }
+
+/* Wide desktop: inset hero from viewport edges like original */
+@media (width >= 1400px) {
+  .hero-promo-container {
+    margin-left: var(--section-padding-desktop);
+    margin-right: var(--section-padding-desktop);
+  }
+}
