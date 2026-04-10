@@ -3,7 +3,7 @@
   --hero-promo-padding: 30px 24px;
   --hero-promo-padding-desktop: 30px 32px;
   --hero-promo-min-height: 300px;
-  --hero-promo-min-height-desktop: 500px;
+  --hero-promo-height-desktop: 500px;
   --hero-promo-bg-gradient: linear-gradient(270deg, #f0f6f9 0%, rgb(240 246 249 / 0%) 100%);
   --hero-promo-bg-color: #f0f6f9;
 }

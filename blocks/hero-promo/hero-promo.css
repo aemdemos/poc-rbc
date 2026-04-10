@@ -1,10 +1,11 @@
 @import url('./hero-promo-tokens.css');
 
 /*
- * Hero Promo — full-bleed section background with content on the right.
- * Beach photo = section-metadata background-image (handled by global .bg-image CSS).
- * Gradient overlay fades left-to-right for text readability.
- * Content (card image + heading + text + CTAs) positioned on right half at desktop.
+ * Hero Promo — full-bleed background image with content on the right.
+ * Beach photo = section-metadata background-image (global .bg-image CSS).
+ * Gradient overlay fades right for text readability.
+ * Content (card image + heading + text + CTAs) on right half at desktop.
+ * Source: full-bleed, fixed 500px height, content in 1200px centered wrapper.
  */
 
 .hero-promo-container {
@@ -13,27 +14,17 @@
   margin-top: 0;
 }
 
-/* Constrain bg-image to content width, not full viewport */
-.hero-promo-container > .bg-image {
-  max-width: var(--max-width-site);
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
-/* Gradient overlay — constrained to same width as bg-image */
+/* Gradient overlay — sits between bg-image (z:0) and wrapper (z:1) */
 .hero-promo-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  max-width: var(--max-width-site);
-  margin: 0 auto;
   z-index: 0;
   background: var(--hero-promo-bg-gradient);
   pointer-events: none;
 }
 
-/* Content wrapper — z-index: 1 comes from global .bg-image section styles */
+/* Content wrapper — constrained to 1200px, centered */
 .hero-promo-container .hero-promo-wrapper {
   max-width: var(--max-width-site);
   margin: auto;
@@ -114,7 +105,7 @@
   color: #fff;
 }
 
-/* Desktop: content on the right half via margin-left */
+/* Desktop: fixed height, content on right half */
 @media (width >= 900px) {
   .hero-promo-container .hero-promo-wrapper {
     padding: 0 var(--section-padding-desktop);
@@ -126,7 +117,8 @@
     justify-content: center;
     margin-left: 50%;
     padding: var(--hero-promo-padding-desktop);
-    min-height: var(--hero-promo-min-height-desktop);
+    height: var(--hero-promo-height-desktop);
+    min-height: unset;
   }
 
   .hero-promo > div:first-child img {
@@ -142,4 +134,3 @@
     line-height: 1.33;
   }
 }
-
