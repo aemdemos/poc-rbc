@@ -62,41 +62,53 @@ main > .section.hero-promo-container > .bg-image {
   max-width: 500px;
 }
 
+/* Card name heading — matches source 36px/500/RBCDisplay */
 .hero-promo h2 {
   color: var(--text-color);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: var(--weight-medium);
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin: 0 0 8px;
+  line-height: 1.2;
 }
 
-.hero-promo p {
+/* Promo text — source uses 24px h4 style for the main selling line */
+.hero-promo > div:last-child p {
   color: var(--text-color);
-  font-size: 20px;
+  font-size: 14px;
   font-weight: var(--weight-medium);
-  line-height: 1.35;
+  line-height: 1.4;
+  margin: 0 0 12px;
 }
 
-/* CTA links — styled as buttons (links share a <p> so EDS doesn't auto-decorate) */
+/* Make the first p (promotional text with bold points) larger */
+.hero-promo > div:last-child p:first-of-type {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* CTA links — styled as buttons matching source exactly */
 .hero-promo > div:last-child p:last-child {
   display: flex;
-  gap: var(--spacing-s);
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: var(--spacing-m);
+  margin-top: 16px;
 }
 
 .hero-promo > div:last-child p:last-child a {
   display: inline-block;
-  padding: 14px 28px;
+  padding: 20px 32px;
+  font-size: 16px;
   font-weight: var(--weight-medium);
   text-decoration: none;
-  border-radius: var(--button-border-radius);
+  border-radius: 1px;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .hero-promo > div:last-child p:last-child a:first-child {
   background-color: var(--rbc-blue);
   color: #fff;
+  border: none;
 }
 
 .hero-promo > div:last-child p:last-child a:first-child:hover {
@@ -105,7 +117,7 @@ main > .section.hero-promo-container > .bg-image {
 
 .hero-promo > div:last-child p:last-child a:last-child {
   background-color: #fff;
-  border: 1px solid var(--rbc-blue);
+  border: 1px solid #fff;
   color: var(--rbc-blue);
 }
 
@@ -136,10 +148,12 @@ main > .section.hero-promo-container > .bg-image {
 
   .hero-promo h2 {
     font-size: 36px;
+    margin: 0 0 15px;
+    line-height: 44px;
   }
 
-  .hero-promo p {
+  .hero-promo > div:last-child p:first-of-type {
     font-size: 24px;
-    line-height: 1.33;
+    line-height: 32px;
   }
 }
