@@ -13,11 +13,21 @@
   margin-top: 0;
 }
 
-/* Gradient overlay — z-index between bg-image (0) and wrapper (1, set by global styles) */
+/* Constrain bg-image to content width, not full viewport */
+.hero-promo-container > .bg-image {
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+/* Gradient overlay — constrained to same width as bg-image */
 .hero-promo-container::after {
   content: '';
   position: absolute;
   inset: 0;
+  max-width: var(--max-width-site);
+  margin: 0 auto;
   z-index: 0;
   background: var(--hero-promo-bg-gradient);
   pointer-events: none;
@@ -133,10 +143,3 @@
   }
 }
 
-/* Wide desktop: inset hero from viewport edges like original */
-@media (width >= 1400px) {
-  .hero-promo-container {
-    margin-left: var(--section-padding-desktop);
-    margin-right: var(--section-padding-desktop);
-  }
-}
