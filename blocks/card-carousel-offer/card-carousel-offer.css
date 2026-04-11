@@ -13,7 +13,7 @@
 }
 
 .columns-info-wrapper ~ .default-content-wrapper h2 {
-  font-size: 27px;
+  font-size: 36px;
   font-weight: 500;
 }
 
@@ -66,11 +66,13 @@
   position: relative;
 }
 
-/* Text body — full width, block flow */
+/* Text body — full width, flex column to push CTA row to bottom */
 .card-carousel-offer .cards-card-body {
   margin: 0;
   flex: 1;
   order: 1;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 /* Image — absolute bottom right */
@@ -88,9 +90,9 @@
   object-fit: contain;
 }
 
-/* Badges — inline-block row, yellow first badge, outlined rest */
+/* Badges — flex items that wrap in a row */
 .card-carousel-offer .offer-badge {
-  display: inline-block;
+  flex: none;
   font-size: 12px;
   font-weight: 600;
   padding: 4px 12px;
@@ -108,17 +110,19 @@
   border-color: #ffba00;
 }
 
-/* Main heading */
+/* Main heading — full width to break onto new line after badges */
 .card-carousel-offer .offer-heading {
   font-size: 36px;
   font-weight: 500;
   line-height: 1.2;
   color: var(--text-color);
   margin: 16px 0 12px;
+  width: 100%;
 }
 
-/* Description text */
+/* Description text — full width */
 .card-carousel-offer .offer-desc {
+  width: 100%;
   font-size: 18px;
   color: var(--text-color);
   font-weight: 400;
@@ -132,9 +136,11 @@
   font-weight: 300;
 }
 
-/* CTA row — wraps Apply Now + View More Details, spaced from description */
+/* CTA row — pushed to bottom, spaced from description */
 .card-carousel-offer .offer-cta-row {
-  padding-top: 32px;
+  margin-top: auto;
+  padding-top: 24px;
+  width: 100%;
 }
 
 .card-carousel-offer .offer-cta {
