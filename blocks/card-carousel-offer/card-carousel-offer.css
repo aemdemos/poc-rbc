@@ -18,8 +18,9 @@
 }
 
 /*
- * Card Carousel Offer — matches source layout exactly.
- * Badges top, large heading, description, bottom row with buttons left + card image right.
+ * Card Carousel Offer
+ * Uses semantic classes added by JS: .offer-badge, .offer-heading,
+ * .offer-desc, .offer-cta, .offer-cta-row
  */
 
 .card-carousel-offer .card-carousel-offer-slides-container {
@@ -65,15 +66,15 @@
   position: relative;
 }
 
-/* Text body — full width, normal block flow so inline-block badges work */
-.card-carousel-offer .card-carousel-offer-slide > :last-child {
+/* Text body — full width, block flow */
+.card-carousel-offer .cards-card-body {
   margin: 0;
   flex: 1;
   order: 1;
 }
 
-/* Image — absolute bottom right, same line as buttons */
-.card-carousel-offer .card-carousel-offer-slide > :first-child {
+/* Image — absolute bottom right */
+.card-carousel-offer .cards-card-image {
   order: 2;
   position: absolute;
   bottom: 24px;
@@ -87,10 +88,8 @@
   object-fit: contain;
 }
 
-/* Badge tags — inline-block so they sit in a row */
-.card-carousel-offer .cards-card-body > p:first-child,
-.card-carousel-offer .cards-card-body > p:nth-child(2),
-.card-carousel-offer .cards-card-body > p:nth-child(3) {
+/* Badges — inline-block row, yellow first badge, outlined rest */
+.card-carousel-offer .offer-badge {
   display: inline-block;
   font-size: 12px;
   font-weight: 600;
@@ -104,14 +103,13 @@
   color: var(--text-color);
 }
 
-/* First badge — yellow */
-.card-carousel-offer .cards-card-body > p:first-child {
+.card-carousel-offer .offer-badge:first-child {
   background-color: #ffba00;
   border-color: #ffba00;
 }
 
-/* Main heading — large like source (~36px) */
-.card-carousel-offer .card-carousel-offer-slide h2 {
+/* Main heading */
+.card-carousel-offer .offer-heading {
   font-size: 36px;
   font-weight: 500;
   line-height: 1.2;
@@ -119,8 +117,8 @@
   margin: 16px 0 12px;
 }
 
-/* Description text — 18px first line, 16px lighter for dates */
-.card-carousel-offer .cards-card-body > h2 ~ p {
+/* Description text */
+.card-carousel-offer .offer-desc {
   font-size: 18px;
   color: var(--text-color);
   font-weight: 400;
@@ -128,23 +126,22 @@
   margin: 0 0 8px;
 }
 
-/* Date/expiry line — smaller, lighter */
-.card-carousel-offer .cards-card-body > h2 ~ p + p {
+/* Second desc line (date/expiry) — smaller, lighter */
+.card-carousel-offer .offer-desc + .offer-desc {
   font-size: 16px;
   font-weight: 300;
 }
 
-/* CTA buttons — inline-block so they sit on same line and respect vertical spacing */
-.card-carousel-offer .cards-card-body > p:nth-last-child(2) {
-  display: inline-block;
+/* CTA row — wraps Apply Now + View More Details, spaced from description */
+.card-carousel-offer .offer-cta-row {
   padding-top: 32px;
 }
 
-.card-carousel-offer .cards-card-body > p:nth-last-child(1) {
+.card-carousel-offer .offer-cta {
   display: inline;
 }
 
-.card-carousel-offer .cards-card-body a[href*="apply"] {
+.card-carousel-offer .offer-cta a[href*="apply"] {
   display: inline-block;
   padding: 12px 20px;
   font-size: 16px;
@@ -154,21 +151,20 @@
   text-decoration: none;
   border-radius: 1px;
   margin-right: 16px;
-  margin-top: 16px;
 }
 
-.card-carousel-offer .cards-card-body a[href*="apply"]:hover {
+.card-carousel-offer .offer-cta a[href*="apply"]:hover {
   background-color: var(--rbc-blue-dark);
 }
 
-.card-carousel-offer .cards-card-body p:last-child a:not([href*="apply"]) {
+.card-carousel-offer .offer-cta a:not([href*="apply"]) {
   font-size: 16px;
   color: var(--rbc-blue);
   text-decoration: none;
   font-weight: 400;
 }
 
-.card-carousel-offer .cards-card-body p:last-child a:not([href*="apply"]):hover {
+.card-carousel-offer .offer-cta a:not([href*="apply"]):hover {
   text-decoration: underline;
 }
 
@@ -229,7 +225,7 @@
   left: calc(50% - 1px);
 }
 
-/* Superscript links in carousel */
+/* Superscript links */
 .card-carousel-offer .cards-card-body a:has(sup) {
   font-size: 0.6em;
   vertical-align: super;

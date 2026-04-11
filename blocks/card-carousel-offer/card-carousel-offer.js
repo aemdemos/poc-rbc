@@ -34,6 +34,58 @@ function getCurrentIndex(block) {
   return slides.length - 1;
 }
 
+/**
+ * Adds semantic classes to card body children so CSS doesn't rely on :nth-child.
+ * Identifies badges (short uppercase text before the heading), the heading,
+ * description paragraphs, and CTA links.
+ */
+function decorateSlideContent(slide) {
+  const body = slide.querySelector('.cards-card-body');
+  if (!body) return;
+
+  const children = [...body.children];
+  let foundHeading = false;
+  let ctaStarted = false;
+
+  children.forEach((el) => {
+    // Heading
+    if (el.tagName === 'H2') {
+      el.classList.add('offer-heading');
+      foundHeading = true;
+      return;
+    }
+
+    // Before heading = badges
+    if (!foundHeading && el.tagName === 'P') {
+      el.classList.add('offer-badge');
+      return;
+    }
+
+    // After heading: check if it's a CTA link paragraph
+    if (foundHeading && el.tagName === 'P') {
+      const hasApplyLink = el.querySelector('a[href*="apply"]');
+      const hasViewLink = el.querySelector('a') && !el.querySelector('a[href*="apply"]');
+      const isOnlyLink = el.children.length === 1 && el.querySelector('a');
+
+      if (hasApplyLink || (isOnlyLink && hasViewLink) || ctaStarted) {
+        el.classList.add('offer-cta');
+        ctaStarted = true;
+      } else {
+        el.classList.add('offer-desc');
+      }
+    }
+  });
+
+  // Wrap CTA paragraphs in a row div for easier layout
+  const ctas = body.querySelectorAll('.offer-cta');
+  if (ctas.length > 0) {
+    const ctaRow = document.createElement('div');
+    ctaRow.className = 'offer-cta-row';
+    ctas[0].before(ctaRow);
+    ctas.forEach((cta) => ctaRow.append(cta));
+  }
+}
+
 export default function decorate(block) {
   const blockId = getBlockId('card-carousel-offer');
   block.setAttribute('id', blockId);
@@ -64,6 +116,7 @@ export default function decorate(block) {
     const card = createCard(row);
     card.classList.add('card-carousel-offer-slide');
     card.dataset.slideIndex = idx;
+    decorateSlideContent(card);
     slidesWrapper.append(card);
     row.remove();
   });
@@ -78,7 +131,6 @@ export default function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
-    // No-loop navigation: clamp at first/last slide
     const prev = block.querySelector('.slide-prev');
     const next = block.querySelector('.slide-next');
 
@@ -96,7 +148,6 @@ export default function decorate(block) {
       });
     }
 
-    // Keyboard navigation
     slidesWrapper.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
@@ -104,16 +155,13 @@ export default function decorate(block) {
       scrollToSlide(block, e.key === 'ArrowLeft' ? current - 1 : current + 1);
     });
 
-    // Sync button state on scroll
     slidesWrapper.addEventListener('scroll', () => {
       const current = getCurrentIndex(block);
       updateNavButtons(block, current, slidesWrapper.querySelectorAll('.card-carousel-offer-slide').length);
     });
 
-    // Initial button state
     updateNavButtons(block, 0, rows.length);
 
-    // Request higher resolution for card images
     block.querySelectorAll('.cards-card-image img').forEach((img) => {
       if (img.src.includes('width=750')) {
         img.src = img.src.replace('width=750', 'width=400');
