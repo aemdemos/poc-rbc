@@ -66,13 +66,14 @@
   position: relative;
 }
 
-/* Text body — full width, flex column to push CTA row to bottom */
+/* Text body — flex row wrap: badges flow inline, everything else full-width */
 .card-carousel-offer .cards-card-body {
   margin: 0;
   flex: 1;
   order: 1;
   display: flex;
-  flex-flow: column wrap;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 /* Image — absolute bottom right */
