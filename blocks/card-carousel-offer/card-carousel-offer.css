@@ -33,7 +33,7 @@
   padding: 0;
 }
 
-/* Horizontal scrolling carousel */
+/* Horizontal scrolling carousel — breaks out of wrapper to show partial slides on edges */
 .card-carousel-offer .card-carousel-offer-slides-container > ul.card-carousel-offer-slides {
   display: flex;
   gap: 30px;
@@ -41,6 +41,10 @@
   overflow: auto hidden;
   scrollbar-width: none;
   padding: 8px 0;
+  margin-left: calc(-1 * (100vw - 100%) / 2);
+  margin-right: calc(-1 * (100vw - 100%) / 2);
+  padding-left: calc((100vw - 100%) / 2);
+  padding-right: calc((100vw - 100%) / 2);
 }
 
 .card-carousel-offer .card-carousel-offer-slides::-webkit-scrollbar {
