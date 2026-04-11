@@ -1,7 +1,38 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
-import { createSliderControls, initSlider, showSlide } from '../../scripts/slider.js';
+import { createSliderControls } from '../../scripts/slider.js';
 import { createCard } from '../card/card.js';
+
+function updateNavButtons(block, current, total) {
+  const prev = block.querySelector('.slide-prev');
+  const next = block.querySelector('.slide-next');
+  if (prev) prev.disabled = current <= 0;
+  if (next) next.disabled = current >= total - 1;
+}
+
+function scrollToSlide(block, index) {
+  const container = block.querySelector('.card-carousel-offer-slides');
+  const slides = container?.querySelectorAll('.card-carousel-offer-slide');
+  if (!container || !slides?.length) return;
+
+  const clamped = Math.max(0, Math.min(index, slides.length - 1));
+  const target = slides[clamped];
+  container.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+  block.dataset.activeSlide = clamped;
+  updateNavButtons(block, clamped, slides.length);
+}
+
+function getCurrentIndex(block) {
+  const container = block.querySelector('.card-carousel-offer-slides');
+  const slides = container?.querySelectorAll('.card-carousel-offer-slide');
+  if (!container || !slides?.length) return 0;
+  const { scrollLeft } = container;
+  const len = Math.min(slides.length, 100);
+  for (let i = 0; i < len; i += 1) {
+    if (scrollLeft < slides[i].offsetLeft + slides[i].offsetWidth) return i;
+  }
+  return slides.length - 1;
+}
 
 export default function decorate(block) {
   const blockId = getBlockId('card-carousel-offer');
@@ -47,23 +78,46 @@ export default function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
-    initSlider(block, {
-      slidesContainer: '.card-carousel-offer-slides',
-      slideSelector: '.card-carousel-offer-slide',
-      prevSelector: '.slide-prev',
-      nextSelector: '.slide-next',
-    });
+    // No-loop navigation: clamp at first/last slide
+    const prev = block.querySelector('.slide-prev');
+    const next = block.querySelector('.slide-next');
+
+    if (prev) {
+      prev.addEventListener('click', () => {
+        const current = getCurrentIndex(block);
+        scrollToSlide(block, current - 1);
+      });
+    }
+
+    if (next) {
+      next.addEventListener('click', () => {
+        const current = getCurrentIndex(block);
+        scrollToSlide(block, current + 1);
+      });
+    }
+
+    // Keyboard navigation
     slidesWrapper.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      const current = parseInt(block.dataset.activeSlide, 10) || 0;
-      const next = e.key === 'ArrowLeft' ? current - 1 : current + 1;
       e.preventDefault();
-      showSlide(block, next, 'smooth', {
-        slidesContainer: '.card-carousel-offer-slides',
-        slideSelector: '.card-carousel-offer-slide',
-        prevSelector: '.slide-prev',
-        nextSelector: '.slide-next',
-      });
+      const current = getCurrentIndex(block);
+      scrollToSlide(block, e.key === 'ArrowLeft' ? current - 1 : current + 1);
+    });
+
+    // Sync button state on scroll
+    slidesWrapper.addEventListener('scroll', () => {
+      const current = getCurrentIndex(block);
+      updateNavButtons(block, current, slidesWrapper.querySelectorAll('.card-carousel-offer-slide').length);
+    });
+
+    // Initial button state
+    updateNavButtons(block, 0, rows.length);
+
+    // Request higher resolution for card images
+    block.querySelectorAll('.cards-card-image img').forEach((img) => {
+      if (img.src.includes('width=750')) {
+        img.src = img.src.replace('width=750', 'width=400');
+      }
     });
   }
 }

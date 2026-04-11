@@ -38,7 +38,6 @@
   display: flex;
   gap: 30px;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
   overflow: auto hidden;
   scrollbar-width: none;
   padding: 8px 0;
@@ -50,7 +49,6 @@
 
 /* Individual carousel card */
 .card-carousel-offer .card-carousel-offer-slide {
-  scroll-snap-align: start;
   box-sizing: border-box;
   border: 1px solid #919191;
   border-radius: 13px;
