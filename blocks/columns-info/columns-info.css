@@ -5,8 +5,8 @@
  * text on left, illustration on right. Matches source exactly.
  */
 
-/* Section wrapper — wider than content, with border line at bottom */
-main > .section > .columns-info-wrapper {
+/* Wrapper — 1400px wide (wider than default 1200px) with bottom border line */
+main > .section.columns-info-container > div.columns-info-wrapper {
   max-width: 1400px;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 32px;
