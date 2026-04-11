@@ -61,25 +61,24 @@
   flex-direction: column;
   padding: 32px 24px 24px 32px;
   width: 300px;
-  min-height: 420px;
   flex: 0 0 300px;
+  position: relative;
 }
 
-/* First child = image wrapper (p or div) — move to bottom right */
-.card-carousel-offer .card-carousel-offer-slide > :first-child {
-  order: 2;
-  line-height: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  margin-top: auto;
-}
-
-/* Second child = text body — top area */
+/* Text body — full width, normal block flow so inline-block badges work */
 .card-carousel-offer .card-carousel-offer-slide > :last-child {
   margin: 0;
-  order: 1;
   flex: 1;
+  order: 1;
+}
+
+/* Image — absolute bottom right, same line as buttons */
+.card-carousel-offer .card-carousel-offer-slide > :first-child {
+  order: 2;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  line-height: 0;
 }
 
 .card-carousel-offer .card-carousel-offer-slide img {
@@ -88,12 +87,11 @@
   object-fit: contain;
 }
 
-/* Badge tags — inline via float to allow wrapping on same line */
+/* Badge tags — inline-block so they sit in a row */
 .card-carousel-offer .cards-card-body > p:first-child,
 .card-carousel-offer .cards-card-body > p:nth-child(2),
 .card-carousel-offer .cards-card-body > p:nth-child(3) {
-  float: left;
-  clear: none;
+  display: inline-block;
   font-size: 12px;
   font-weight: 600;
   padding: 4px 12px;
@@ -110,11 +108,6 @@
 .card-carousel-offer .cards-card-body > p:first-child {
   background-color: #ffba00;
   border-color: #ffba00;
-}
-
-/* Clear float after badges */
-.card-carousel-offer .cards-card-body > h2 {
-  clear: both;
 }
 
 /* Main heading — large like source (~36px) */
@@ -141,11 +134,14 @@
   font-weight: 300;
 }
 
-/* CTA buttons row — pushed to bottom with margin-top auto */
-.card-carousel-offer .cards-card-body > p:nth-last-child(1),
+/* CTA buttons — inline-block so they sit on same line and respect vertical spacing */
 .card-carousel-offer .cards-card-body > p:nth-last-child(2) {
+  display: inline-block;
+  padding-top: 32px;
+}
+
+.card-carousel-offer .cards-card-body > p:nth-last-child(1) {
   display: inline;
-  margin-top: auto;
 }
 
 .card-carousel-offer .cards-card-body a[href*="apply"] {
