@@ -5,11 +5,17 @@
  * text on left, illustration on right. Matches source exactly.
  */
 
-/* Wrapper — 1400px wide (wider than default 1200px) with bottom border line */
-main > .section.columns-info-container > div.columns-info-wrapper {
-  max-width: 1400px;
-  border-bottom: 1px solid #e0e0e0;
+/* Bottom border line — wider than content via pseudo-element */
+main > .section.columns-info-container {
   padding-bottom: 32px;
+}
+
+main > .section.columns-info-container::after {
+  content: '';
+  display: block;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 /* Card container with shadow on top/left/right, flat bottom */
