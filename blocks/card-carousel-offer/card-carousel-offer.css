@@ -76,20 +76,21 @@
   align-content: flex-start;
 }
 
-/* Image — absolute bottom right */
+/* Image — absolute, aligned with CTA buttons at bottom right */
 .card-carousel-offer .cards-card-image {
   order: 2;
   position: absolute;
-  bottom: 24px;
+  bottom: 16px;
   right: 24px;
   line-height: 0;
 }
 
 .card-carousel-offer .card-carousel-offer-slide img {
   max-width: 170px;
-  height: 102px;
+  height: auto;
   object-fit: contain;
 }
+
 
 /* Badges — flex items that wrap in a row */
 .card-carousel-offer .offer-badge {
