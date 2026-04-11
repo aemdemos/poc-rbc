@@ -12,12 +12,17 @@
   padding-bottom: 32px;
 }
 
-/* Card container with rounded top corners */
+/* Card container with shadow on top/left/right, flat bottom */
 .columns-info > div {
   display: flex;
   flex-direction: column;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
+  box-shadow:
+    rgb(37 37 37 / 4%) 0 -4px 118px 0,
+    rgb(37 37 37 / 6%) 0 -2px 26px 0,
+    rgb(37 37 37 / 8%) 0 -1px 8px 0;
+  clip-path: inset(-120px -120px 0 -120px);
   padding: 32px;
   overflow: hidden;
 }
