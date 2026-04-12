@@ -62,9 +62,8 @@
   flex-direction: column;
   padding: 32px 24px 24px 32px;
   width: 300px;
-  min-height: 480px;
+  min-height: 474px;
   flex: 0 0 300px;
-  padding-bottom: 32px;
   position: relative;
 }
 
@@ -76,15 +75,6 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-}
-
-/* Image — absolute, bottom-aligned with CTA buttons */
-.card-carousel-offer .cards-card-image {
-  order: 2;
-  position: absolute;
-  bottom: 32px;
-  right: 24px;
-  line-height: 0;
 }
 
 .card-carousel-offer .card-carousel-offer-slide img {
@@ -140,11 +130,22 @@
   font-weight: 300;
 }
 
-/* CTA row — pushed to bottom, spaced from description */
+/* CTA row — flex row: buttons left, card image right */
 .card-carousel-offer .offer-cta-row {
   margin-top: auto;
-  padding-top: 24px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-carousel-offer .offer-cta-left {
+  flex-shrink: 0;
+}
+
+.card-carousel-offer .offer-cta-right {
+  line-height: 0;
+  flex-shrink: 0;
 }
 
 .card-carousel-offer .offer-cta {

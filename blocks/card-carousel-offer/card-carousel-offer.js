@@ -82,7 +82,19 @@ function decorateSlideContent(slide) {
     const ctaRow = document.createElement('div');
     ctaRow.className = 'offer-cta-row';
     ctas[0].before(ctaRow);
-    ctas.forEach((cta) => ctaRow.append(cta));
+
+    // CTAs go in a left-side wrapper
+    const ctaLeft = document.createElement('div');
+    ctaLeft.className = 'offer-cta-left';
+    ctas.forEach((cta) => ctaLeft.append(cta));
+    ctaRow.append(ctaLeft);
+
+    // Move card image into the CTA row (right side)
+    const cardImage = slide.querySelector('.cards-card-image');
+    if (cardImage) {
+      cardImage.classList.add('offer-cta-right');
+      ctaRow.append(cardImage);
+    }
   }
 }
 
