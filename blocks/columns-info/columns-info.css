@@ -1,18 +1,47 @@
 @import url('./columns-info-tokens.css');
 
+/*
+ * "What is a Credit Card?" — card-like container with shadow,
+ * text on left, illustration on right. Matches source exactly.
+ */
+
+/* Bottom border line — wider than content via pseudo-element */
+main > .section.columns-info-container {
+  padding-bottom: 32px;
+}
+
+main > .section.columns-info-container::after {
+  content: '';
+  display: block;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Card container with shadow on top/left/right, flat bottom */
 .columns-info > div {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-m);
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  box-shadow:
+    rgb(37 37 37 / 4%) 0 -4px 118px 0,
+    rgb(37 37 37 / 6%) 0 -2px 26px 0,
+    rgb(37 37 37 / 8%) 0 -1px 8px 0;
+  clip-path: inset(-120px -120px 0 -120px);
+  padding: 32px;
+  overflow: hidden;
 }
 
+/* Illustration image */
 .columns-info img {
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   display: block;
   margin: 0 auto;
 }
 
+/* Mobile: image above text */
 .columns-info > div > div {
   order: 1;
 }
@@ -22,24 +51,47 @@
   text-align: center;
 }
 
-.columns-info > div > .columns-info-img-col img {
-  display: block;
-}
-
+/* Typography matching source */
 .columns-info h2 {
-  color: var(--rbc-blue);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 0 0 15px;
 }
 
 .columns-info p {
-  color: var(--text-color-muted);
-  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 24px;
+  margin: 0;
 }
 
+/* "Learn More" link with arrow */
+.columns-info a {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--rbc-blue);
+  text-decoration: none;
+}
+
+.columns-info a::after {
+  content: ' ›';
+}
+
+.columns-info a:hover {
+  text-decoration: underline;
+}
+
+/* Desktop: text left, image right */
 @media (width >= 900px) {
   .columns-info > div {
+    flex-direction: row;
     align-items: center;
-    flex-direction: unset;
-    gap: var(--columns-info-gap);
+    gap: 32px;
+    padding: 40px 32px;
   }
 
   .columns-info > div > div {
@@ -47,7 +99,12 @@
     order: unset;
   }
 
+  .columns-info > div > .columns-info-img-col {
+    order: unset;
+    flex: 0 0 320px;
+  }
+
   .columns-info img {
-    max-width: unset;
+    max-width: 100%;
   }
 }

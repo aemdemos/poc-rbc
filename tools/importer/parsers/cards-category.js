@@ -10,23 +10,23 @@ export default function parse(element, { document }) {
     const labelEl = item.querySelector('span.category-button-link');
     const href = item.getAttribute('href');
 
-    const image = img ? img.cloneNode(true) : '';
+    // Image cell with field hint
+    const imageCell = document.createElement('div');
+    imageCell.append(document.createComment(' field:image '));
+    if (img) imageCell.append(img.cloneNode(true));
 
-    const textEl = document.createElement('div');
+    // Text cell
+    const textCell = document.createElement('div');
     if (labelEl && href) {
       const link = document.createElement('a');
       link.setAttribute('href', href);
       link.textContent = labelEl.textContent.trim();
-      textEl.append(link);
+      textCell.append(link);
     } else if (labelEl) {
-      textEl.textContent = labelEl.textContent.trim();
+      textCell.textContent = labelEl.textContent.trim();
     }
 
-    cells.push([
-      document.createComment(' field:image '),
-      image,
-      textEl,
-    ]);
+    cells.push([imageCell, textCell]);
   });
 
   const block = WebImporter.Blocks.createBlock(document, {
