@@ -83,9 +83,10 @@
 }
 
 
-/* Badges — flex items that wrap in a row */
+/* Badges — flex items that wrap in a row, natural height */
 .card-carousel-offer .offer-badge {
   flex: none;
+  align-self: flex-start;
   font-size: 12px;
   font-weight: 600;
   padding: 4px 12px;
@@ -135,7 +136,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .card-carousel-offer .offer-cta-left {
