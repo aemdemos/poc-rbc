@@ -74,7 +74,6 @@
   order: 1;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
 }
 
 .card-carousel-offer .card-carousel-offer-slide img {
