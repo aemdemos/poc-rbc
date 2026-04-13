@@ -62,27 +62,20 @@ main .section:has(.cards.product) > .default-content-wrapper {
   text-align: center;
 }
 
-/* --- Card body --- */
+/* --- Card body: flex column so ul can grow to fill space --- */
 .cards.product .cards-card-body {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   padding: 24px 20px 0;
   margin: 0;
 }
 
-/* All children span full width by default */
-.cards.product .cards-card-body > * {
-  grid-column: 1 / -1;
-}
-
 /*
- * Title + Annual Fee row: h4 left, fee paragraph right on same row.
+ * Title (h4): uses flex-wrap trick to share row with fee paragraph.
+ * h4 gets most of the space, fee wraps to right.
  */
 .cards.product .cards-card-body h4 {
-  grid-column: 1;
-  grid-row: 1;
   font-size: 24px;
   font-weight: var(--weight-medium);
   color: var(--text-color);
@@ -91,20 +84,17 @@ main .section:has(.cards.product) > .default-content-wrapper {
 }
 
 /*
- * Annual Fee paragraph — right-aligned in the title row.
+ * Annual Fee paragraph — floated right beside the title.
  * Authors write: "Annual Fee $139"
  */
 .cards.product .cards-card-body h4 + p {
-  grid-column: 2;
-  grid-row: 1;
+  float: right;
   font-size: 11px;
   font-weight: 400;
   color: var(--text-color-muted);
-  margin: 0;
+  margin: -32px 0 16px;
   text-align: right;
   white-space: nowrap;
-  align-self: start;
-  padding-top: 4px;
 }
 
 /*
@@ -125,7 +115,6 @@ main .section:has(.cards.product) > .default-content-wrapper {
 
 /*
  * Offer container — badge paragraph + description paragraph styled as a box.
- * Also includes a top divider to separate from the title/fee row.
  */
 .cards.product .cards-card-body p:has(> strong:only-child) {
   margin: 16px 0 0;
@@ -134,8 +123,6 @@ main .section:has(.cards.product) > .default-content-wrapper {
   border-bottom: 0;
   border-radius: 8px 8px 0 0;
   background: linear-gradient(rgb(255 186 0 / 10%) 0%, rgb(255 186 0 / 0%) 100%);
-  position: relative;
-  top: 8px;
 }
 
 .cards.product .cards-card-body p:has(> strong:only-child) + p {
@@ -149,8 +136,6 @@ main .section:has(.cards.product) > .default-content-wrapper {
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-color);
-  position: relative;
-  top: 8px;
 }
 
 /* --- Feature list with SVG icon bullets --- */
@@ -194,9 +179,9 @@ main .section:has(.cards.product) > .default-content-wrapper {
 
 /* --- Bottom section: rates + links + apply button --- */
 
-/* Rates paragraph — first paragraph after the list */
+/* Rates paragraph — first paragraph after the list, pinned to bottom */
 .cards.product .cards-card-body ul + p {
-  margin-top: auto;
+  margin: 0;
   padding: 16px 0;
   border-top: 1px solid var(--cards-product-divider);
   border-bottom: 1px solid var(--cards-product-divider);
