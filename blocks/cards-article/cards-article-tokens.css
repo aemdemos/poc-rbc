@@ -1,9 +1,3 @@
 :root {
-  --cards-article-grid-min-width: 300px;
-  --cards-article-grid-gap: 24px;
-  --cards-article-card-border-width: 0;
-  --cards-article-card-border-color: transparent;
-  --cards-article-card-body-margin: 16px;
-  --cards-article-image-aspect-ratio: 4 / 3;
-  --cards-article-image-object-fit: cover;
+  --cards-article-grid-gap: 30px;
 }

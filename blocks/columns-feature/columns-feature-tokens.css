@@ -1,4 +1,6 @@
 /* columns-feature design tokens */
 :root {
-  --columns-feature-gap: 40px;
+  --columns-feature-gap: 30px;
+  --columns-feature-left-bg: #e1ebef;
+  --columns-feature-right-bg: #f3f7f8;
 }

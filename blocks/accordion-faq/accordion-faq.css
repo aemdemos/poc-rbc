@@ -1,86 +1,125 @@
 @import url('./accordion-faq-tokens.css');
 
-.accordion-faq > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
+/* --- Section heading centered --- */
+main .section:has(.accordion-faq) > .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- "View FAQs" link centered below accordion with chevron --- */
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a {
+  color: var(--rbc-blue);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a::before {
+  content: '› ';
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a:hover {
+  text-decoration: underline;
+}
+
+/* Hide stray checkmark image */
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper p:has(> img) {
+  display: none;
+}
+
+/* --- Two independent columns: stack on mobile, side by side on desktop --- */
+.accordion-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 @media (width >= 900px) {
-  .accordion-faq > ul {
-    grid-template-columns: 1fr 1fr;
-    column-gap: var(--spacing-xl);
+  .accordion-faq {
+    flex-direction: row;
+    gap: var(--spacing-xl);
+  }
+
+  .accordion-faq .accordion-faq-column {
+    flex: 1;
   }
 }
 
-.accordion-faq > ul > li {
-  border: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
-  border-bottom: 0;
-}
-
-.accordion-faq > ul > li:last-child {
+/* --- Each FAQ item --- */
+.accordion-faq .accordion-faq-item {
   border-bottom: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
-.accordion-faq > ul > li + li {
-  margin-top: var(--accordion-faq-item-gap);
+/* First item in each column gets a top border */
+.accordion-faq .accordion-faq-item:first-child {
+  border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
 .accordion-faq p {
   margin-bottom: 0.8em;
 }
 
+/* --- Question label --- */
 .accordion-faq .accordion-faq-item-label {
   position: relative;
-  padding: var(--spacing-s) var(--accordion-faq-label-padding-x);
+  padding: 15px var(--accordion-faq-label-padding-x);
   padding-right: var(--accordion-faq-label-padding-right);
   cursor: pointer;
   overflow: auto;
-  transition: background-color var(--accordion-faq-transition-duration);
 }
 
 .accordion-faq .accordion-faq-item-label p {
   margin: 0;
-  font-weight: var(--weight-regular);
-  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--rbc-blue);
 }
 
-.accordion-faq li.active .accordion-faq-item-label {
-  background-color: var(--light-color);
-}
-
-.accordion-faq .accordion-faq-item-label:focus,
-.accordion-faq .accordion-faq-item-label:hover {
-  background-color: var(--light-color);
-}
-
+/* --- Chevron indicator --- */
 .accordion-faq .accordion-faq-item-label::after {
   content: '';
   position: absolute;
   top: 50%;
   right: var(--accordion-faq-label-icon-right);
   transform: translateY(-50%) rotate(135deg);
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border: 2px solid var(--rbc-blue);
   border-width: 2px 2px 0 0;
   transition: transform var(--accordion-faq-transition-duration);
 }
 
-.accordion-faq li.active .accordion-faq-item-label::after {
+.accordion-faq .accordion-faq-item.active .accordion-faq-item-label::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
+/* --- Answer body --- */
 .accordion-faq .accordion-faq-item-body {
   display: none;
-  padding: 0 var(--accordion-faq-body-padding-x);
+  padding: 0 var(--accordion-faq-body-padding-x) 15px;
 }
 
-.accordion-faq li.active .accordion-faq-item-body {
+.accordion-faq .accordion-faq-item-body p {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.accordion-faq .accordion-faq-item-body a {
+  color: var(--rbc-blue);
+  text-decoration: none;
+}
+
+.accordion-faq .accordion-faq-item-body a:hover {
+  text-decoration: underline;
+}
+
+.accordion-faq .accordion-faq-item.active .accordion-faq-item-body {
   display: block;
-  border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
-  background-color: var(--background-color);
 }

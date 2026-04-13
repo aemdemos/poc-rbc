@@ -21,4 +21,17 @@ export default function decorate(block) {
   });
   block.textContent = '';
   block.append(ul);
+
+  // Ensure section heading exists for the tool variant (fallback until authored)
+  if (block.classList.contains('tool')) {
+    const blockWrapper = block.closest('.cards-wrapper');
+    if (blockWrapper && !blockWrapper.previousElementSibling?.querySelector?.('h2')) {
+      const heading = document.createElement('h2');
+      heading.textContent = 'Find and Compare our Best Credit Cards';
+      const wrapper = document.createElement('div');
+      wrapper.className = 'default-content-wrapper';
+      wrapper.append(heading);
+      blockWrapper.before(wrapper);
+    }
+  }
 }

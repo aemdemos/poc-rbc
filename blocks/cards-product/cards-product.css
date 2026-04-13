@@ -1,60 +1,254 @@
 @import url('./cards-product-tokens.css');
 
+/* --- Grid layout: 1 col mobile, 2 col tablet, 3 col desktop --- */
 .cards.product > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--cards-product-grid-min-width), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--cards-product-grid-gap);
 }
 
+@media (width >= 600px) {
+  .cards.product > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards.product > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Card container --- */
 .cards.product > ul > li {
-  border: var(--cards-product-card-border-width) solid var(--cards-product-card-border-color);
+  display: flex;
+  flex-direction: column;
   background-color: var(--background-color);
+  border: 1px solid var(--cards-product-card-border-color);
   border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow);
   overflow: hidden;
-  transition: box-shadow var(--transition-base);
 }
 
-.cards.product > ul > li:hover {
-  box-shadow: var(--card-shadow-hover);
-}
-
-.cards.product .cards-card-body h4 {
-  color: var(--text-color);
-  font-size: var(--heading-font-size-s);
-}
-
-.cards.product .cards-card-body strong {
-  color: var(--rbc-blue);
-  font-size: var(--body-font-size-s);
-}
-
-.cards.product .cards-card-body ul {
-  font-size: var(--body-font-size-s);
-  color: var(--text-color-muted);
-  padding-left: 20px;
-}
-
-.cards.product .cards-card-image img {
-  aspect-ratio: 3 / 2;
-  object-fit: contain;
-  padding: 20px;
-  background-color: var(--cool-white);
-}
-
-.cards.product .cards-card-body {
-  margin: var(--cards-product-card-body-margin);
-}
-
+/* --- Card image area --- */
 .cards.product .cards-card-image {
   line-height: 0;
+  background-color: var(--cards-product-image-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 24px 40px;
 }
 
-.cards.product > ul > li img {
-  width: 100%;
-  aspect-ratio: var(--cards-product-image-aspect-ratio);
-  object-fit: var(--cards-product-image-object-fit);
+.cards.product .cards-card-image picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards.product > ul > li img,
+.cards.product .cards-card-image img {
+  width: 200px;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* --- Section heading centered --- */
+main .section:has(.cards.product) > .default-content-wrapper {
+  text-align: center;
+}
+
+/* --- Card body: flex column so ul can grow to fill space --- */
+.cards.product .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px 20px 0;
+  margin: 0;
+}
+
+/*
+ * Title (h4): uses flex-wrap trick to share row with fee paragraph.
+ * h4 gets most of the space, fee wraps to right.
+ */
+.cards.product .cards-card-body h4 {
+  font-size: 24px;
+  font-weight: var(--weight-medium);
+  color: var(--text-color);
+  line-height: 1.33;
+  margin: 0 0 4px;
+}
+
+/*
+ * Annual Fee paragraph — floated right beside the title.
+ * Authors write: "Annual Fee $139"
+ */
+.cards.product .cards-card-body h4 + p {
+  float: right;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-color-muted);
+  margin: -32px 0 16px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/*
+ * Offer label — authors use <strong> inside a <p> (e.g. "OFFER AVAILABLE").
+ */
+.cards.product .cards-card-body p > strong:only-child {
+  display: inline-block;
+  background-color: var(--cards-product-offer-gold);
+  color: var(--text-color);
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  line-height: 16px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/*
+ * Offer container — badge paragraph + description paragraph styled as a box.
+ */
+.cards.product .cards-card-body p:has(> strong:only-child) {
+  margin: 16px 0 0;
+  padding: 16px 16px 0;
+  border: 1px solid var(--cards-product-offer-border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(rgb(255 186 0 / 10%) 0%, rgb(255 186 0 / 0%) 100%);
+}
+
+.cards.product .cards-card-body p:has(> strong:only-child) + p {
+  margin: 0 0 16px;
+  padding: 8px 16px 16px;
+  border: 1px solid var(--cards-product-offer-border);
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(rgb(255 186 0 / 5%) 0%, rgb(255 186 0 / 0%) 100%);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* --- Feature list with SVG icon bullets --- */
+.cards.product .cards-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.cards.product .cards-card-body ul li {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  padding-left: 44px;
+  position: relative;
+}
+
+/* First list item is the feature heading (no icon) */
+.cards.product .cards-card-body ul li:first-child {
+  font-weight: 400;
+  padding-left: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--cards-product-divider);
+}
+
+/* SVG icon bullet for subsequent items */
+.cards.product .cards-card-body ul li:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  background: url('/icons/feature-icon-rewards.svg') no-repeat center / contain;
+}
+
+/* --- Bottom section: rates + links + apply button --- */
+
+/* Rates paragraph — first paragraph after the list, pinned to bottom */
+.cards.product .cards-card-body ul + p {
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--cards-product-divider);
+  border-bottom: 1px solid var(--cards-product-divider);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* View Credit Card link paragraph */
+.cards.product .cards-card-body ul ~ p:nth-last-child(2) {
+  padding: 16px 0;
+  margin: 0;
+  border-bottom: 1px solid var(--cards-product-divider);
+}
+
+.cards.product .cards-card-body ul ~ p a {
+  color: var(--rbc-blue);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.cards.product .cards-card-body ul ~ p a:hover {
+  text-decoration: underline;
+}
+
+/* Apply Now link — last paragraph, styled as full-width button */
+.cards.product .cards-card-body > p:last-child {
+  margin: 16px -20px 0;
+  padding: 0;
+}
+
+.cards.product .cards-card-body > p:last-child a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--rbc-blue);
+  color: #fff;
+  text-align: center;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+
+.cards.product .cards-card-body > p:last-child a:hover {
+  background-color: var(--rbc-blue-dark);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* --- Bottom spacing --- */
+.cards.product .cards-card-body ul li:last-child {
+  padding-bottom: 8px;
+}
+
+/* --- Responsive: mobile --- */
+@media (width < 600px) {
+  .cards.product .cards-card-image {
+    min-height: 160px;
+    padding: 20px;
+  }
+
+  .cards.product > ul > li img,
+  .cards.product .cards-card-image img {
+    width: 160px;
+  }
 }

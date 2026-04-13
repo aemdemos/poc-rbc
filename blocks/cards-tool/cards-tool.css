@@ -1,5 +1,11 @@
 @import url('./cards-tool-tokens.css');
 
+/* Section heading above the cards-tool block */
+main .section:has(.cards.tool) > .default-content-wrapper h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
 .cards.tool > ul {
   list-style: none;
   margin: 0;
@@ -12,35 +18,43 @@
 .cards.tool > ul > li {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: var(--cool-white);
+  background-color: #fff;
   border-radius: var(--card-border-radius);
-  padding: var(--spacing-l);
-  min-height: 150px;
+  padding: 20px;
+  min-height: 190px;
   overflow: hidden;
 }
 
+/* Text body comes first visually */
 .cards.tool .cards-card-body {
   flex: 1;
   margin: 0;
+  order: 1;
 }
 
 .cards.tool .cards-card-body h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 24px;
+  font-weight: var(--weight-medium);
   color: var(--text-color);
-  margin-bottom: var(--spacing-s);
+  margin: 0 0 15px;
+  line-height: 1.16;
+}
+
+.cards.tool .cards-card-body p {
+  margin: 0;
 }
 
 .cards.tool .cards-card-body a {
   display: inline-block;
-  padding: var(--button-padding-small);
+  padding: 12px 15px;
   border: 1px solid var(--rbc-blue);
   border-radius: var(--button-border-radius);
   color: var(--rbc-blue);
   font-weight: var(--weight-medium);
   font-size: var(--body-font-size-s);
   text-decoration: none;
-  transition: var(--button-transition);
+  background-color: #fff;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .cards.tool .cards-card-body a:hover {
@@ -49,15 +63,18 @@
   text-decoration: none;
 }
 
+/* Image comes after text visually */
 .cards.tool .cards-card-image {
   flex-shrink: 0;
   line-height: 0;
-  margin-left: var(--spacing-m);
+  margin-left: 16px;
+  order: 2;
 }
 
 .cards.tool > ul > li img {
-  width: 120px;
+  width: 140px;
   height: auto;
+  aspect-ratio: auto;
   object-fit: contain;
 }
 

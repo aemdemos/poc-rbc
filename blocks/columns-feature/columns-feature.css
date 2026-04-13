@@ -1,44 +1,231 @@
 @import url('./columns-feature-tokens.css');
 
+/* --- Section heading centered --- */
+main .section:has(.columns-feature) > .default-content-wrapper {
+  text-align: center;
+}
+
+/* --- Two-column layout --- */
 .columns-feature > div {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-l);
-}
-
-.columns-feature > div > div {
-  background-color: var(--cool-white);
-  border-radius: var(--card-border-radius);
-  padding: var(--spacing-l);
-}
-
-.columns-feature img {
-  max-width: 100%;
-  height: auto;
-}
-
-.columns-feature h3 {
-  color: var(--rbc-blue);
-  margin-bottom: var(--spacing-s);
-}
-
-.columns-feature p {
-  color: var(--text-color-muted);
-}
-
-.columns-feature hr {
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: var(--spacing-m) 0;
+  gap: var(--columns-feature-gap);
 }
 
 @media (width >= 900px) {
   .columns-feature > div {
     flex-direction: row;
-    gap: var(--columns-feature-gap);
+    align-items: stretch;
   }
 
   .columns-feature > div > div {
     flex: 1;
   }
+}
+
+/* --- Left column: mobile app card --- */
+.columns-feature > div > div:first-child {
+  background-color: var(--columns-feature-left-bg);
+  border-radius: var(--card-border-radius);
+  padding: 30px 30px 0;
+  display: flex;
+  flex-flow: row wrap;
+  overflow: hidden;
+}
+
+/* Non-badge children span full width */
+.columns-feature > div > div:first-child > h3,
+.columns-feature > div > div:first-child > p:not(:has(> a img)) {
+  width: 100%;
+}
+
+/* Hide empty paragraphs */
+.columns-feature > div > div:first-child p:empty {
+  display: none;
+}
+
+/* 1. App store badges: inline with proper gap */
+.columns-feature > div > div:first-child p:has(> a img) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+.columns-feature > div > div:first-child p:has(> a img) a {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.columns-feature > div > div:first-child img {
+  max-width: 152px;
+  height: 45px;
+  width: auto;
+}
+
+/* 2. Phone image: cropped at bottom via object-fit, matching source */
+.columns-feature > div > div:first-child > p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+  line-height: 0;
+}
+
+/* Issue 3: phone image shorter, cropped at bottom */
+.columns-feature > div > div:first-child > p:last-child img {
+  width: 70%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  max-width: none;
+}
+
+/*
+ * Right column: CSS grid for 3-column award badge layout.
+ * Awards section = gray card with rounded corners.
+ * NOMI section = separate gray card below with 30px white gap.
+ * The <hr> creates the gap between the two visual cards.
+ */
+.columns-feature > div > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: var(--columns-feature-right-bg);
+  padding: 30px;
+  border-radius: var(--card-border-radius);
+}
+
+/* All children span full width by default */
+.columns-feature > div > div:last-child > * {
+  grid-column: 1 / -1;
+}
+
+/* Award image paragraphs: 3-column row, images centered */
+.columns-feature > div > div:last-child > p:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(7) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* All award image cells: vertically centered so badge center lines align */
+.columns-feature > div > div:last-child > p:nth-child(3),
+.columns-feature > div > div:last-child > p:nth-child(5),
+.columns-feature > div > div:last-child > p:nth-child(7) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100px;
+  margin-bottom: 8px;
+}
+
+/* Award label paragraphs: 3-column row */
+.columns-feature > div > div:last-child > p:nth-child(4) {
+  grid-column: 1;
+  grid-row: 4;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(6) {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(8) {
+  grid-column: 3;
+  grid-row: 4;
+}
+
+/* All award labels: centered, smaller text */
+.columns-feature > div > div:last-child > p:nth-child(4),
+.columns-feature > div > div:last-child > p:nth-child(6),
+.columns-feature > div > div:last-child > p:nth-child(8) {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Award images: centered in cells */
+.columns-feature > div > div:last-child img {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/*
+ * Item 5: <hr> becomes a 30px white gap between two separate "cards".
+ * Awards card gets bottom rounded corners, bg stops.
+ * NOMI gets its own top+bottom rounded corners and gray bg.
+ */
+.columns-feature > div > div:last-child hr {
+  border: 0;
+  margin: 0 -30px;
+  padding: 0;
+  height: 30px;
+  background-color: var(--background-color);
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+
+/* NOMI heading: new gray card starts */
+.columns-feature > div > div:last-child hr ~ h3 {
+  background-color: var(--columns-feature-right-bg);
+  margin: 0 -30px;
+  padding: 40px 60px 8px;
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+}
+
+/* NOMI paragraphs: continue gray bg */
+.columns-feature > div > div:last-child hr ~ p {
+  background-color: var(--columns-feature-right-bg);
+  margin-left: -30px;
+  margin-right: -30px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+/* Last paragraph: bottom rounded corners */
+.columns-feature > div > div:last-child hr ~ p:last-child {
+  padding-bottom: 40px;
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+
+/* --- Typography: tight spacing to match source --- */
+
+/* Issue 1: reduce space after h3 */
+.columns-feature h3 {
+  font-size: 28px;
+  font-weight: var(--weight-medium);
+  color: var(--text-color);
+  margin: 0 0 8px;
+  line-height: 1.29;
+}
+
+/* Issue 2: reduce space after description p */
+.columns-feature p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+/* --- Links --- */
+.columns-feature a {
+  color: var(--rbc-blue);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.columns-feature a:hover {
+  text-decoration: underline;
 }
