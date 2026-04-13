@@ -1,5 +1,10 @@
 @import url('./cards-article-tokens.css');
 
+/* --- Section heading + description centered --- */
+main .section:has(.cards.article) > .default-content-wrapper {
+  text-align: center;
+}
+
 /* --- Grid: 1 col mobile, 3 col desktop --- */
 .cards.article > ul {
   list-style: none;
@@ -16,9 +21,12 @@
   }
 }
 
-/* --- Card container --- */
+/* --- Card container: no borders, no background --- */
 .cards.article > ul > li {
   background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -31,6 +39,7 @@
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  border-radius: 0;
 }
 
 /* --- Article title --- */
@@ -48,6 +57,5 @@
 }
 
 .cards.article .cards-card-body a:hover {
-  color: var(--rbc-blue-dark);
   text-decoration: underline;
 }
