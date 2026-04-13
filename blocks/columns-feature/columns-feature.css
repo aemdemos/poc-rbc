@@ -117,12 +117,12 @@ main .section:has(.columns-feature) > .default-content-wrapper {
   grid-row: 3;
 }
 
-/* All award image cells: centered, bottom-aligned */
+/* All award image cells: vertically centered so badge center lines align */
 .columns-feature > div > div:last-child > p:nth-child(3),
 .columns-feature > div > div:last-child > p:nth-child(5),
 .columns-feature > div > div:last-child > p:nth-child(7) {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   text-align: center;
   min-height: 100px;
