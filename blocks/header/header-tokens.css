@@ -1,16 +1,19 @@
-/* header design tokens (layout only; colors/typography use global tokens) */
+/* RBC header design tokens */
 :root {
-  --header-nav-max-width: 1248px;
-  --header-nav-max-width-desktop: 1264px;
-  --header-nav-padding: 0 24px;
-  --header-nav-padding-desktop: 0 32px;
-  --header-nav-gap: 24px;
-  --header-nav-gap-desktop: 32px;
-  --header-brand-width: 128px;
-  --header-dropdown-width: 200px;
-  --header-dropdown-padding: 16px;
-  --header-dropdown-left: -24px;
+  --header-nav-max-width: 1200px;
+  --header-nav-max-width-desktop: 1200px;
+  --header-nav-padding: 0 16px;
+  --header-nav-padding-desktop: 0 24px;
+  --header-nav-gap: 16px;
+  --header-nav-gap-desktop: 16px;
+  --header-brand-width: 48px;
+  --header-dropdown-width: 800px;
+  --header-dropdown-padding: 24px;
+  --header-dropdown-left: 0;
   --header-hamburger-size: 22px;
-  --header-hamburger-bar-width: 20px;
+  --header-hamburger-bar-width: 22px;
   --header-hamburger-bar-height: 2px;
+  --rbc-dark-blue: #003168;
+  --rbc-blue: #006ac3;
+  --rbc-blue-hover: #004d8c;
 }
