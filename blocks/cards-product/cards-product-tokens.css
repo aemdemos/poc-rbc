@@ -1,9 +1,9 @@
 :root {
-  --cards-product-grid-min-width: 300px;
-  --cards-product-grid-gap: 24px;
-  --cards-product-card-border-width: 1px;
-  --cards-product-card-border-color: #e8e8e8;
-  --cards-product-card-body-margin: 16px;
-  --cards-product-image-aspect-ratio: 4 / 3;
-  --cards-product-image-object-fit: cover;
+  --cards-product-grid-gap: 32px;
+  --cards-product-card-border-color: #e0e0e0;
+  --cards-product-image-bg: #f3f7f8;
+  --cards-product-offer-gold: #ffba00;
+  --cards-product-offer-border: #ffb500;
+  --cards-product-divider: #c4c8cc;
+  --cards-product-fee-label-color: #585858;
 }

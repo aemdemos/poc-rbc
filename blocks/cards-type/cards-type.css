@@ -1,60 +1,119 @@
 @import url('./cards-type-tokens.css');
 
+/* --- Grid: 1 col mobile, 2 col tablet, 4 col desktop --- */
 .cards.type > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--cards-type-grid-min-width), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--cards-type-grid-gap);
 }
 
+@media (width >= 600px) {
+  .cards.type > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards.type > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Card container --- */
 .cards.type > ul > li {
-  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
   overflow: hidden;
 }
 
+/* --- Illustration area --- */
 .cards.type .cards-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
   line-height: 0;
-  text-align: center;
-  padding: var(--spacing-m);
 }
 
 .cards.type > ul > li img {
-  max-width: 200px;
-  height: 140px;
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
   object-fit: contain;
 }
 
+/* --- Card body --- */
 .cards.type .cards-card-body {
-  margin: var(--cards-type-card-body-margin);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0;
 }
 
+/* Type label (h3) */
 .cards.type .cards-card-body h3 {
+  font-size: 22px;
+  font-weight: var(--weight-medium);
   color: var(--text-color);
-  font-size: var(--heading-font-size-m);
-  font-weight: var(--weight-bold);
+  margin: 16px 0;
+  line-height: 1.27;
 }
 
+/* Description paragraph */
 .cards.type .cards-card-body > p:first-of-type {
-  font-weight: var(--weight-bold);
+  font-size: 18px;
+  font-weight: var(--weight-medium);
+  line-height: 1.33;
   color: var(--text-color);
+  margin: 0 0 16px;
 }
 
+/* --- Benefits list --- */
 .cards.type .cards-card-body ul {
-  font-size: var(--body-font-size-s);
-  color: var(--text-color-muted);
-  padding-left: 20px;
-  border-top: 1px solid var(--border-color);
-  padding-top: var(--spacing-s);
-  margin-top: var(--spacing-s);
+  list-style: disc;
+  padding: 0 0 0 20px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--cards-type-divider);
+  flex: 1;
+}
+
+.cards.type .cards-card-body ul li {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.cards.type .cards-card-body ul li::marker {
+  color: var(--rbc-blue);
+  font-size: 14px;
+}
+
+/* --- CTA link at bottom --- */
+.cards.type .cards-card-body > p:last-of-type {
+  margin-top: auto;
+  padding-top: 16px;
 }
 
 .cards.type .cards-card-body a {
   color: var(--rbc-blue);
-  font-weight: var(--weight-medium);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
 }
 
+.cards.type .cards-card-body a:hover {
+  text-decoration: underline;
+}
+
+/* Chevron prefix already added in existing CSS via ::before */
 .cards.type .cards-card-body a::before {
   content: '› ';
 }

@@ -1,60 +1,191 @@
 @import url('./cards-product-tokens.css');
 
+/* --- Grid layout --- */
 .cards.product > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--cards-product-grid-min-width), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--cards-product-grid-gap);
 }
 
+@media (width >= 600px) {
+  .cards.product > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Card container --- */
 .cards.product > ul > li {
-  border: var(--cards-product-card-border-width) solid var(--cards-product-card-border-color);
+  display: flex;
+  flex-direction: column;
   background-color: var(--background-color);
+  border: 1px solid var(--cards-product-card-border-color);
   border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow);
   overflow: hidden;
-  transition: box-shadow var(--transition-base);
 }
 
-.cards.product > ul > li:hover {
-  box-shadow: var(--card-shadow-hover);
-}
-
-.cards.product .cards-card-body h4 {
-  color: var(--text-color);
-  font-size: var(--heading-font-size-s);
-}
-
-.cards.product .cards-card-body strong {
-  color: var(--rbc-blue);
-  font-size: var(--body-font-size-s);
-}
-
-.cards.product .cards-card-body ul {
-  font-size: var(--body-font-size-s);
-  color: var(--text-color-muted);
-  padding-left: 20px;
-}
-
-.cards.product .cards-card-image img {
-  aspect-ratio: 3 / 2;
-  object-fit: contain;
-  padding: 20px;
-  background-color: var(--cool-white);
-}
-
-.cards.product .cards-card-body {
-  margin: var(--cards-product-card-body-margin);
-}
-
+/* --- Card image area --- */
 .cards.product .cards-card-image {
   line-height: 0;
+  background-color: var(--cards-product-image-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 24px 40px;
 }
 
-.cards.product > ul > li img {
-  width: 100%;
-  aspect-ratio: var(--cards-product-image-aspect-ratio);
-  object-fit: var(--cards-product-image-object-fit);
+.cards.product .cards-card-image picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards.product > ul > li img,
+.cards.product .cards-card-image img {
+  width: 200px;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* --- Card body --- */
+.cards.product .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px 20px 0;
+  margin: 0;
+}
+
+/* Card title (h4) */
+.cards.product .cards-card-body h4 {
+  font-size: 24px;
+  font-weight: var(--weight-medium);
+  color: var(--text-color);
+  line-height: 1.33;
+  margin: 0 0 4px;
+}
+
+/*
+ * Annual Fee paragraph — the first <p> after the h4.
+ * Authors write: "Annual Fee $139"
+ * We split this visually using CSS: small label + large value.
+ * For now, style it as a single line with muted appearance.
+ */
+.cards.product .cards-card-body h4 + p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-color-muted);
+  margin: 0 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cards-product-divider);
+}
+
+/*
+ * Offer label — authors use <strong> inside a <p> (e.g. "OFFER AVAILABLE").
+ * The <p> containing only a <strong> becomes the offer badge.
+ */
+.cards.product .cards-card-body p > strong:only-child {
+  display: inline-block;
+  background-color: var(--cards-product-offer-gold);
+  color: var(--text-color);
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  line-height: 16px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/*
+ * Offer container — the paragraph immediately AFTER the badge paragraph.
+ * Authors write the offer description as a regular paragraph.
+ * We style the badge's parent <p> and the next <p> together as the offer box.
+ */
+.cards.product .cards-card-body p:has(> strong:only-child) {
+  margin: 0;
+  padding: 16px 16px 0;
+  border: 1px solid var(--cards-product-offer-border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(rgb(255 186 0 / 10%) 0%, rgb(255 186 0 / 0%) 100%);
+  position: relative;
+  top: 8px;
+}
+
+.cards.product .cards-card-body p:has(> strong:only-child) + p {
+  margin: 0 0 16px;
+  padding: 8px 16px 16px;
+  border: 1px solid var(--cards-product-offer-border);
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(rgb(255 186 0 / 5%) 0%, rgb(255 186 0 / 0%) 100%);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+  position: relative;
+  top: 8px;
+}
+
+/* --- Feature list --- */
+.cards.product .cards-card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.cards.product .cards-card-body ul li {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  padding-left: 28px;
+  position: relative;
+}
+
+/* First list item is the feature heading (no bullet) */
+.cards.product .cards-card-body ul li:first-child {
+  font-weight: 400;
+  padding-left: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--cards-product-divider);
+}
+
+/* Bullet for subsequent items */
+.cards.product .cards-card-body ul li:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--cards-product-divider);
+}
+
+/* --- Bottom spacing --- */
+.cards.product .cards-card-body ul li:last-child {
+  padding-bottom: 24px;
+}
+
+/* --- Responsive: single column on mobile --- */
+@media (width < 600px) {
+  .cards.product .cards-card-image {
+    min-height: 160px;
+    padding: 20px;
+  }
+
+  .cards.product > ul > li img,
+  .cards.product .cards-card-image img {
+    width: 160px;
+  }
 }

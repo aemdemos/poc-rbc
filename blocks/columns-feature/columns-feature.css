@@ -1,44 +1,105 @@
 @import url('./columns-feature-tokens.css');
 
+/* --- Two-column layout --- */
 .columns-feature > div {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-l);
-}
-
-.columns-feature > div > div {
-  background-color: var(--cool-white);
-  border-radius: var(--card-border-radius);
-  padding: var(--spacing-l);
-}
-
-.columns-feature img {
-  max-width: 100%;
-  height: auto;
-}
-
-.columns-feature h3 {
-  color: var(--rbc-blue);
-  margin-bottom: var(--spacing-s);
-}
-
-.columns-feature p {
-  color: var(--text-color-muted);
-}
-
-.columns-feature hr {
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: var(--spacing-m) 0;
+  gap: var(--columns-feature-gap);
 }
 
 @media (width >= 900px) {
   .columns-feature > div {
     flex-direction: row;
-    gap: var(--columns-feature-gap);
+    align-items: stretch;
   }
 
   .columns-feature > div > div {
     flex: 1;
   }
+}
+
+/* --- Left column: mobile app card --- */
+.columns-feature > div > div:first-child {
+  background-color: var(--columns-feature-left-bg);
+  border-radius: var(--card-border-radius);
+  padding: 30px 30px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Right column: awards + NOMI stacked --- */
+.columns-feature > div > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--columns-feature-gap);
+  background-color: var(--columns-feature-right-bg);
+  padding: 30px;
+  border-radius: var(--card-border-radius);
+}
+
+/* Right column sub-sections (awards card, NOMI card) separated by hr */
+.columns-feature > div > div:nth-child(2) hr {
+  border: 0;
+  margin: 0;
+  height: 0;
+}
+
+/* --- Typography --- */
+.columns-feature h3 {
+  font-size: 28px;
+  font-weight: var(--weight-medium);
+  color: var(--text-color);
+  margin: 0 0 16px;
+  line-height: 1.29;
+}
+
+.columns-feature p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 16px;
+}
+
+/* --- App store badges --- */
+.columns-feature > div > div:first-child img {
+  max-width: 152px;
+  height: auto;
+}
+
+/* Phone image at bottom of left card */
+.columns-feature > div > div:first-child > p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+  line-height: 0;
+}
+
+.columns-feature > div > div:first-child > p:last-child img {
+  max-width: 70%;
+  display: block;
+}
+
+/* --- Award images --- */
+.columns-feature > div > div:last-child img {
+  max-width: 120px;
+  height: auto;
+}
+
+/* --- Divider (hr) --- */
+.columns-feature hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 16px 0;
+}
+
+/* --- Links --- */
+.columns-feature a {
+  color: var(--rbc-blue);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.columns-feature a:hover {
+  text-decoration: underline;
 }

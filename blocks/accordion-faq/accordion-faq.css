@@ -15,56 +15,46 @@
   }
 }
 
+/* Each item has a bottom border; first item also gets top border */
 .accordion-faq > ul > li {
-  border: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
-  border-bottom: 0;
-}
-
-.accordion-faq > ul > li:last-child {
   border-bottom: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
-.accordion-faq > ul > li + li {
-  margin-top: var(--accordion-faq-item-gap);
+.accordion-faq > ul > li:first-child,
+.accordion-faq > ul > li:nth-child(5) {
+  border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
 .accordion-faq p {
   margin-bottom: 0.8em;
 }
 
+/* Question label */
 .accordion-faq .accordion-faq-item-label {
   position: relative;
-  padding: var(--spacing-s) var(--accordion-faq-label-padding-x);
+  padding: 15px var(--accordion-faq-label-padding-x);
   padding-right: var(--accordion-faq-label-padding-right);
   cursor: pointer;
   overflow: auto;
-  transition: background-color var(--accordion-faq-transition-duration);
 }
 
 .accordion-faq .accordion-faq-item-label p {
   margin: 0;
-  font-weight: var(--weight-regular);
-  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--rbc-blue);
 }
 
-.accordion-faq li.active .accordion-faq-item-label {
-  background-color: var(--light-color);
-}
-
-.accordion-faq .accordion-faq-item-label:focus,
-.accordion-faq .accordion-faq-item-label:hover {
-  background-color: var(--light-color);
-}
-
+/* Chevron indicator */
 .accordion-faq .accordion-faq-item-label::after {
   content: '';
   position: absolute;
   top: 50%;
   right: var(--accordion-faq-label-icon-right);
   transform: translateY(-50%) rotate(135deg);
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border: 2px solid var(--rbc-blue);
   border-width: 2px 2px 0 0;
   transition: transform var(--accordion-faq-transition-duration);
@@ -74,13 +64,28 @@
   transform: translateY(-50%) rotate(-45deg);
 }
 
+/* Answer body */
 .accordion-faq .accordion-faq-item-body {
   display: none;
-  padding: 0 var(--accordion-faq-body-padding-x);
+  padding: 0 var(--accordion-faq-body-padding-x) 15px;
+}
+
+.accordion-faq .accordion-faq-item-body p {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.accordion-faq .accordion-faq-item-body a {
+  color: var(--rbc-blue);
+  text-decoration: none;
+}
+
+.accordion-faq .accordion-faq-item-body a:hover {
+  text-decoration: underline;
 }
 
 .accordion-faq li.active .accordion-faq-item-body {
   display: block;
-  border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
-  background-color: var(--background-color);
 }
