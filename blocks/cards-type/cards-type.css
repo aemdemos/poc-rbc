@@ -22,12 +22,15 @@
   }
 }
 
-/* --- Card container --- */
+/* --- Card container: NO borders, NO background --- */
 .cards.type > ul > li {
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 /* --- Illustration area --- */
@@ -55,16 +58,16 @@
   margin: 0;
 }
 
-/* Type label (h3) */
+/* Type label (h3) — source is 28px/500 RBCDisplay */
 .cards.type .cards-card-body h3 {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: var(--weight-medium);
   color: var(--text-color);
   margin: 16px 0;
-  line-height: 1.27;
+  line-height: 1.29;
 }
 
-/* Description paragraph */
+/* Description paragraph — source is 18px/500 */
 .cards.type .cards-card-body > p:first-of-type {
   font-size: 18px;
   font-weight: var(--weight-medium);
@@ -113,7 +116,6 @@
   text-decoration: underline;
 }
 
-/* Chevron prefix already added in existing CSS via ::before */
 .cards.type .cards-card-body a::before {
   content: '› ';
 }
