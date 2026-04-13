@@ -82,7 +82,12 @@ main .section:has(.columns-feature) > .default-content-wrapper {
   max-width: none;
 }
 
-/* --- Right column: grid for award layout --- */
+/*
+ * Right column: CSS grid for 3-column award badge layout.
+ * Awards section = gray card with rounded corners.
+ * NOMI section = separate gray card below with 30px white gap.
+ * The <hr> creates the gap between the two visual cards.
+ */
 .columns-feature > div > div:last-child {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -91,69 +96,65 @@ main .section:has(.columns-feature) > .default-content-wrapper {
   border-radius: var(--card-border-radius);
 }
 
-/* Default: all children span full width */
+/* All children span full width by default */
 .columns-feature > div > div:last-child > * {
   grid-column: 1 / -1;
 }
 
-/* 3. Award image paragraphs: aligned to bottom of their cells */
+/* Award image paragraphs: 3-column row, images centered */
 .columns-feature > div > div:last-child > p:nth-child(3) {
   grid-column: 1;
   grid-row: 3;
-  text-align: center;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 100px;
 }
 
 .columns-feature > div > div:last-child > p:nth-child(5) {
   grid-column: 2;
   grid-row: 3;
-  text-align: center;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 100px;
 }
 
 .columns-feature > div > div:last-child > p:nth-child(7) {
   grid-column: 3;
   grid-row: 3;
-  text-align: center;
+}
+
+/* All award image cells: centered, bottom-aligned */
+.columns-feature > div > div:last-child > p:nth-child(3),
+.columns-feature > div > div:last-child > p:nth-child(5),
+.columns-feature > div > div:last-child > p:nth-child(7) {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  text-align: center;
   min-height: 100px;
+  margin-bottom: 8px;
 }
 
-/* Award label paragraphs */
+/* Award label paragraphs: 3-column row */
 .columns-feature > div > div:last-child > p:nth-child(4) {
   grid-column: 1;
   grid-row: 4;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
 }
 
 .columns-feature > div > div:last-child > p:nth-child(6) {
   grid-column: 2;
   grid-row: 4;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
 }
 
 .columns-feature > div > div:last-child > p:nth-child(8) {
   grid-column: 3;
   grid-row: 4;
+}
+
+/* All award labels: centered, smaller text */
+.columns-feature > div > div:last-child > p:nth-child(4),
+.columns-feature > div > div:last-child > p:nth-child(6),
+.columns-feature > div > div:last-child > p:nth-child(8) {
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  padding-bottom: 16px;
 }
 
-/* Issue 4: award images centered in their cells */
+/* Award images: centered in cells */
 .columns-feature > div > div:last-child img {
   max-width: 120px;
   height: auto;
@@ -162,40 +163,39 @@ main .section:has(.columns-feature) > .default-content-wrapper {
 }
 
 /*
- * 4. NOMI section: the <hr> creates a visual break between two "cards".
- * Awards card has gray bg (from parent). After <hr>, NOMI looks like
- * a separate card. We use the <hr> as a white gap, then give NOMI
- * content its own gray background with rounded bottom corners.
+ * Item 5: <hr> becomes a 30px white gap between two separate "cards".
+ * Awards card gets bottom rounded corners, bg stops.
+ * NOMI gets its own top+bottom rounded corners and gray bg.
  */
-
-/* Issue 5: <hr> becomes a thin white separator line between awards and NOMI */
 .columns-feature > div > div:last-child hr {
   border: 0;
-  margin: 16px -30px 0;
+  margin: 0 -30px;
   padding: 0;
-  height: 1px;
+  height: 30px;
   background-color: var(--background-color);
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 
-/* NOMI heading: continues the gray bg card */
+/* NOMI heading: new gray card starts */
 .columns-feature > div > div:last-child hr ~ h3 {
   background-color: var(--columns-feature-right-bg);
   margin: 0 -30px;
-  padding: 24px 30px 8px;
+  padding: 40px 60px 8px;
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
 }
 
-/* NOMI paragraphs */
+/* NOMI paragraphs: continue gray bg */
 .columns-feature > div > div:last-child hr ~ p {
   background-color: var(--columns-feature-right-bg);
   margin-left: -30px;
   margin-right: -30px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
-/* Last paragraph (Learn More) gets bottom padding + rounded corners */
+/* Last paragraph: bottom rounded corners */
 .columns-feature > div > div:last-child hr ~ p:last-child {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 
