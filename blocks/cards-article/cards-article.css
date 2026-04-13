@@ -1,8 +1,14 @@
 @import url('./cards-article-tokens.css');
 
-/* --- Section heading + description centered --- */
+/* --- Section heading + description centered, description narrower --- */
 main .section:has(.cards.article) > .default-content-wrapper {
   text-align: center;
+}
+
+main .section:has(.cards.article) > .default-content-wrapper p {
+  max-width: 66%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* --- Grid: 1 col mobile, 3 col desktop --- */
