@@ -1,5 +1,10 @@
 @import url('./columns-feature-tokens.css');
 
+/* --- Section heading centered --- */
+main .section:has(.columns-feature) > .default-content-wrapper {
+  text-align: center;
+}
+
 /* --- Two-column layout --- */
 .columns-feature > div {
   display: flex;
@@ -24,25 +29,54 @@
   border-radius: var(--card-border-radius);
   padding: 30px 30px 0;
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   overflow: hidden;
 }
 
-/* --- Right column: awards + NOMI stacked --- */
+/* Non-badge children span full width */
+.columns-feature > div > div:first-child > h3,
+.columns-feature > div > div:first-child > p:not(:has(> a img)) {
+  width: 100%;
+}
+
+/* --- Right column: awards top (gray bg) + NOMI bottom (white bg) --- */
 .columns-feature > div > div:last-child {
-  display: flex;
-  flex-direction: column;
-  gap: var(--columns-feature-gap);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   background-color: var(--columns-feature-right-bg);
   padding: 30px;
   border-radius: var(--card-border-radius);
 }
 
-/* Right column sub-sections (awards card, NOMI card) separated by hr */
-.columns-feature > div > div:nth-child(2) hr {
+/*
+ * The <hr> separates awards from NOMI.
+ * We use it to create a visual break: everything after hr gets white bg
+ * by using a negative margin + padding trick to break out of parent padding.
+ */
+.columns-feature > div > div:last-child hr {
   border: 0;
-  margin: 0;
-  height: 0;
+  margin: 30px -30px 0;
+  height: 30px;
+  background-color: var(--background-color);
+}
+
+/* NOMI section (content after hr) gets white background via parent trick */
+.columns-feature > div > div:last-child hr ~ * {
+  background-color: var(--background-color);
+  margin-left: -30px;
+  margin-right: -30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.columns-feature > div > div:last-child hr ~ h3 {
+  padding-top: 30px;
+  border-radius: 0;
+}
+
+.columns-feature > div > div:last-child hr ~ p:last-child {
+  padding-bottom: 30px;
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 
 /* --- Typography --- */
@@ -62,10 +96,35 @@
   margin: 0 0 16px;
 }
 
-/* --- App store badges --- */
+/*
+ * App store badges: make badge paragraphs flow inline.
+ * The content may have badges in one <p> (local) or separate <p> tags (remote).
+ * We use a flex-wrap approach on the left column itself for the badge area.
+ */
+
+/* Hide empty paragraphs in left column */
+.columns-feature > div > div:first-child p:empty {
+  display: none;
+}
+
+/* Badge paragraphs (contain a > img) display inline */
+.columns-feature > div > div:first-child p:has(> a img) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.columns-feature > div > div:first-child p:has(> a img) a {
+  display: inline-flex;
+  line-height: 0;
+}
+
 .columns-feature > div > div:first-child img {
   max-width: 152px;
-  height: auto;
+  height: 45px;
+  width: auto;
 }
 
 /* Phone image at bottom of left card */
@@ -77,20 +136,63 @@
 
 .columns-feature > div > div:first-child > p:last-child img {
   max-width: 70%;
+  height: auto;
   display: block;
 }
 
-/* --- Award images --- */
+/* --- Award images + labels: 3-column grid --- */
 .columns-feature > div > div:last-child img {
   max-width: 120px;
   height: auto;
 }
 
-/* --- Divider (hr) --- */
-.columns-feature hr {
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: 16px 0;
+/* Default: all children in right column span full width */
+.columns-feature > div > div:last-child > * {
+  grid-column: 1 / -1;
+}
+
+/* Award image paragraphs (3rd, 5th, 7th children = indexes 2,4,6) take 1 column each */
+.columns-feature > div > div:last-child > p:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+  text-align: center;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+  text-align: center;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(7) {
+  grid-column: 3;
+  grid-row: 3;
+  text-align: center;
+}
+
+/* Award label paragraphs (4th, 6th, 8th children) take 1 column each */
+.columns-feature > div > div:last-child > p:nth-child(4) {
+  grid-column: 1;
+  grid-row: 4;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(6) {
+  grid-column: 2;
+  grid-row: 4;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.columns-feature > div > div:last-child > p:nth-child(8) {
+  grid-column: 3;
+  grid-row: 4;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 /* --- Links --- */
