@@ -57,17 +57,32 @@
   object-fit: contain;
 }
 
+/* --- Section heading centered --- */
+main .section:has(.cards.product) > .default-content-wrapper {
+  text-align: center;
+}
+
 /* --- Card body --- */
 .cards.product .cards-card-body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
   flex: 1;
   padding: 24px 20px 0;
   margin: 0;
 }
 
-/* Card title (h4) */
+/* All children span full width by default */
+.cards.product .cards-card-body > * {
+  grid-column: 1 / -1;
+}
+
+/*
+ * Title + Annual Fee row: h4 left, fee paragraph right on same row.
+ */
 .cards.product .cards-card-body h4 {
+  grid-column: 1;
+  grid-row: 1;
   font-size: 24px;
   font-weight: var(--weight-medium);
   color: var(--text-color);
@@ -76,16 +91,20 @@
 }
 
 /*
- * Annual Fee paragraph — the first <p> after the h4.
+ * Annual Fee paragraph — right-aligned in the title row.
  * Authors write: "Annual Fee $139"
  */
 .cards.product .cards-card-body h4 + p {
-  font-size: 14px;
-  font-weight: 300;
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 11px;
+  font-weight: 400;
   color: var(--text-color-muted);
-  margin: 0 0 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--cards-product-divider);
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+  align-self: start;
+  padding-top: 4px;
 }
 
 /*
@@ -106,9 +125,10 @@
 
 /*
  * Offer container — badge paragraph + description paragraph styled as a box.
+ * Also includes a top divider to separate from the title/fee row.
  */
 .cards.product .cards-card-body p:has(> strong:only-child) {
-  margin: 0;
+  margin: 16px 0 0;
   padding: 16px 16px 0;
   border: 1px solid var(--cards-product-offer-border);
   border-bottom: 0;
@@ -172,27 +192,27 @@
   background: url('/icons/feature-icon-rewards.svg') no-repeat center / contain;
 }
 
-/* --- Bottom section: rates + links --- */
-.cards.product .cards-card-body ul ~ p {
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.33;
-  color: var(--text-color);
-  margin: 0;
-  padding: 0;
-}
+/* --- Bottom section: rates + links + apply button --- */
 
 /* Rates paragraph — first paragraph after the list */
 .cards.product .cards-card-body ul + p {
   margin-top: auto;
-  padding-top: 16px;
+  padding: 16px 0;
   border-top: 1px solid var(--cards-product-divider);
+  border-bottom: 1px solid var(--cards-product-divider);
   font-size: 12px;
   font-weight: 300;
+  line-height: 1.5;
   color: var(--text-color);
 }
 
-/* View Credit Card link */
+/* View Credit Card link paragraph */
+.cards.product .cards-card-body ul ~ p:nth-last-child(2) {
+  padding: 16px 0;
+  margin: 0;
+  border-bottom: 1px solid var(--cards-product-divider);
+}
+
 .cards.product .cards-card-body ul ~ p a {
   color: var(--rbc-blue);
   font-size: 16px;
@@ -204,9 +224,16 @@
   text-decoration: underline;
 }
 
-/* Apply Now link — last paragraph with a link, styled as button */
+/* Apply Now link — last paragraph, styled as full-width button */
+.cards.product .cards-card-body > p:last-child {
+  margin: 16px -20px 0;
+  padding: 0;
+}
+
 .cards.product .cards-card-body > p:last-child a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--rbc-blue);
   color: #fff;
   text-align: center;
@@ -215,8 +242,6 @@
   font-weight: var(--weight-medium);
   text-decoration: none;
   border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
-  margin: 16px -20px 0;
-  width: calc(100% + 40px);
 }
 
 .cards.product .cards-card-body > p:last-child a:hover {
