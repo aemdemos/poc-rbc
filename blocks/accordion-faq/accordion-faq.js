@@ -19,7 +19,13 @@ export default function decorate(block) {
     const [label, body] = [...li.children];
     if (label !== null && label !== undefined) {
       label.className = 'accordion-faq-item-label';
-      label.addEventListener('click', () => li.classList.toggle('active'));
+      label.addEventListener('click', () => {
+        // Close all other items, then toggle this one
+        block.querySelectorAll('.accordion-faq-item.active').forEach((item) => {
+          if (item !== li) item.classList.remove('active');
+        });
+        li.classList.toggle('active');
+      });
     }
     if (body !== null && body !== undefined) body.className = 'accordion-faq-item-body';
 

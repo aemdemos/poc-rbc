@@ -6,10 +6,24 @@ main .section:has(.accordion-faq) > .default-content-wrapper {
   margin-bottom: 40px;
 }
 
-/* --- "View FAQs" link centered below accordion --- */
+/* --- "View FAQs" link centered below accordion with chevron --- */
 main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper {
   text-align: center;
   margin-top: 40px;
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a {
+  color: var(--rbc-blue);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a::before {
+  content: '› ';
+}
+
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper a:hover {
+  text-decoration: underline;
 }
 
 /* Hide stray checkmark image */
