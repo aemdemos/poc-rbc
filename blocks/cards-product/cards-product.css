@@ -1,6 +1,6 @@
 @import url('./cards-product-tokens.css');
 
-/* --- Grid layout --- */
+/* --- Grid layout: 1 col mobile, 2 col tablet, 3 col desktop --- */
 .cards.product > ul {
   list-style: none;
   margin: 0;
@@ -13,6 +13,12 @@
 @media (width >= 600px) {
   .cards.product > ul {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards.product > ul {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -72,8 +78,6 @@
 /*
  * Annual Fee paragraph — the first <p> after the h4.
  * Authors write: "Annual Fee $139"
- * We split this visually using CSS: small label + large value.
- * For now, style it as a single line with muted appearance.
  */
 .cards.product .cards-card-body h4 + p {
   font-size: 14px;
@@ -86,7 +90,6 @@
 
 /*
  * Offer label — authors use <strong> inside a <p> (e.g. "OFFER AVAILABLE").
- * The <p> containing only a <strong> becomes the offer badge.
  */
 .cards.product .cards-card-body p > strong:only-child {
   display: inline-block;
@@ -102,9 +105,7 @@
 }
 
 /*
- * Offer container — the paragraph immediately AFTER the badge paragraph.
- * Authors write the offer description as a regular paragraph.
- * We style the badge's parent <p> and the next <p> together as the offer box.
+ * Offer container — badge paragraph + description paragraph styled as a box.
  */
 .cards.product .cards-card-body p:has(> strong:only-child) {
   margin: 0;
@@ -132,7 +133,7 @@
   top: 8px;
 }
 
-/* --- Feature list --- */
+/* --- Feature list with SVG icon bullets --- */
 .cards.product .cards-card-body ul {
   list-style: none;
   padding: 0;
@@ -148,11 +149,11 @@
   font-weight: 300;
   line-height: 1.5;
   color: var(--text-color);
-  padding-left: 28px;
+  padding-left: 44px;
   position: relative;
 }
 
-/* First list item is the feature heading (no bullet) */
+/* First list item is the feature heading (no icon) */
 .cards.product .cards-card-body ul li:first-child {
   font-weight: 400;
   padding-left: 0;
@@ -160,24 +161,76 @@
   border-top: 1px solid var(--cards-product-divider);
 }
 
-/* Bullet for subsequent items */
+/* SVG icon bullet for subsequent items */
 .cards.product .cards-card-body ul li:not(:first-child)::before {
   content: '';
   position: absolute;
-  left: 4px;
-  top: 9px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--cards-product-divider);
+  left: 0;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  background: url('/icons/feature-icon-rewards.svg') no-repeat center / contain;
+}
+
+/* --- Bottom section: rates + links --- */
+.cards.product .cards-card-body ul ~ p {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.33;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Rates paragraph — first paragraph after the list */
+.cards.product .cards-card-body ul + p {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--cards-product-divider);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+/* View Credit Card link */
+.cards.product .cards-card-body ul ~ p a {
+  color: var(--rbc-blue);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.cards.product .cards-card-body ul ~ p a:hover {
+  text-decoration: underline;
+}
+
+/* Apply Now link — last paragraph with a link, styled as button */
+.cards.product .cards-card-body > p:last-child a {
+  display: block;
+  background-color: var(--rbc-blue);
+  color: #fff;
+  text-align: center;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+  margin: 16px -20px 0;
+  width: calc(100% + 40px);
+}
+
+.cards.product .cards-card-body > p:last-child a:hover {
+  background-color: var(--rbc-blue-dark);
+  color: #fff;
+  text-decoration: none;
 }
 
 /* --- Bottom spacing --- */
 .cards.product .cards-card-body ul li:last-child {
-  padding-bottom: 24px;
+  padding-bottom: 8px;
 }
 
-/* --- Responsive: single column on mobile --- */
+/* --- Responsive: mobile --- */
 @media (width < 600px) {
   .cards.product .cards-card-image {
     min-height: 160px;
