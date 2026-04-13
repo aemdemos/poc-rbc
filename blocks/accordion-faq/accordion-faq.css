@@ -1,46 +1,47 @@
 @import url('./accordion-faq-tokens.css');
 
-/* --- Section heading centered with more bottom margin --- */
+/* --- Section heading centered --- */
 main .section:has(.accordion-faq) > .default-content-wrapper {
   text-align: center;
   margin-bottom: 40px;
 }
 
-/* --- "View FAQs" link + any content after accordion: centered --- */
+/* --- "View FAQs" link centered below accordion --- */
 main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper {
   text-align: center;
   margin-top: 40px;
 }
 
-/* Hide stray checkmark image after View FAQs */
+/* Hide stray checkmark image */
 main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper p:has(> img) {
   display: none;
 }
 
-/* --- Grid layout --- */
-.accordion-faq > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
+/* --- Two independent columns: stack on mobile, side by side on desktop --- */
+.accordion-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 @media (width >= 900px) {
-  .accordion-faq > ul {
-    grid-template-columns: 1fr 1fr;
-    column-gap: var(--spacing-xl);
+  .accordion-faq {
+    flex-direction: row;
+    gap: var(--spacing-xl);
+  }
+
+  .accordion-faq .accordion-faq-column {
+    flex: 1;
   }
 }
 
-/* Each item has a bottom border */
-.accordion-faq > ul > li {
+/* --- Each FAQ item --- */
+.accordion-faq .accordion-faq-item {
   border-bottom: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
-/* First item in each column gets top border (1st and 5th items) */
-.accordion-faq > ul > li:first-child,
-.accordion-faq > ul > li:nth-child(5) {
+/* First item in each column gets a top border */
+.accordion-faq .accordion-faq-item:first-child {
   border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
@@ -48,7 +49,7 @@ main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-
   margin-bottom: 0.8em;
 }
 
-/* Question label */
+/* --- Question label --- */
 .accordion-faq .accordion-faq-item-label {
   position: relative;
   padding: 15px var(--accordion-faq-label-padding-x);
@@ -65,7 +66,7 @@ main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-
   color: var(--rbc-blue);
 }
 
-/* Chevron indicator */
+/* --- Chevron indicator --- */
 .accordion-faq .accordion-faq-item-label::after {
   content: '';
   position: absolute;
@@ -79,11 +80,11 @@ main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-
   transition: transform var(--accordion-faq-transition-duration);
 }
 
-.accordion-faq li.active .accordion-faq-item-label::after {
+.accordion-faq .accordion-faq-item.active .accordion-faq-item-label::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
-/* Answer body */
+/* --- Answer body --- */
 .accordion-faq .accordion-faq-item-body {
   display: none;
   padding: 0 var(--accordion-faq-body-padding-x) 15px;
@@ -105,6 +106,6 @@ main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-
   text-decoration: underline;
 }
 
-.accordion-faq li.active .accordion-faq-item-body {
+.accordion-faq .accordion-faq-item.active .accordion-faq-item-body {
   display: block;
 }
