@@ -1,5 +1,23 @@
 @import url('./accordion-faq-tokens.css');
 
+/* --- Section heading centered with more bottom margin --- */
+main .section:has(.accordion-faq) > .default-content-wrapper {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- "View FAQs" link + any content after accordion: centered --- */
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Hide stray checkmark image after View FAQs */
+main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-wrapper p:has(> img) {
+  display: none;
+}
+
+/* --- Grid layout --- */
 .accordion-faq > ul {
   list-style: none;
   margin: 0;
@@ -15,11 +33,12 @@
   }
 }
 
-/* Each item has a bottom border; first item also gets top border */
+/* Each item has a bottom border */
 .accordion-faq > ul > li {
   border-bottom: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
 }
 
+/* First item in each column gets top border (1st and 5th items) */
 .accordion-faq > ul > li:first-child,
 .accordion-faq > ul > li:nth-child(5) {
   border-top: var(--accordion-faq-item-border-width) solid var(--accordion-faq-item-border-color);
