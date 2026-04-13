@@ -69,7 +69,7 @@ main .section:has(.accordion-faq) > .default-content-wrapper ~ .default-content-
   padding: 15px var(--accordion-faq-label-padding-x);
   padding-right: var(--accordion-faq-label-padding-right);
   cursor: pointer;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .accordion-faq .accordion-faq-item-label p {
