@@ -222,7 +222,9 @@ export default async function decorate(block) {
     });
   }
 
-  headerBar.append(brand, searchBtn, tools);
+  // Insert search button as first item in tools (before Contact Us)
+  tools.insertBefore(searchBtn, tools.firstChild);
+  headerBar.append(brand, tools);
 
   // === Row 2: Global Navigation ===
   const globalNav = document.createElement('div');
@@ -248,8 +250,10 @@ export default async function decorate(block) {
         a.textContent = directLink.textContent.trim();
         navItem.append(a);
       } else {
-        // Megamenu item
-        const label = li.childNodes[0]?.textContent?.trim() || '';
+        // Megamenu item — label is in a <p> tag or first text node
+        const labelEl = li.querySelector(':scope > p');
+        const label = labelEl?.textContent?.trim()
+          || li.childNodes[0]?.textContent?.trim() || '';
         const btn = document.createElement('button');
         btn.className = 'nav-main-btn';
         btn.textContent = label;
