@@ -86,11 +86,46 @@ function buildUtilityBar(utilSection) {
   right.className = 'nav-utility-right';
 
   [...utilList.children].forEach((li) => {
-    const link = li.querySelector('a');
-    if (link) {
+    const subList = li.querySelector('ul');
+    const directLink = li.querySelector(':scope > a');
+
+    if (subList) {
+      // Dropdown item (e.g. Institutional)
+      const labelEl = li.querySelector(':scope > p');
+      const label = labelEl?.textContent?.trim()
+        || li.childNodes[0]?.textContent?.trim() || '';
+      const wrapper = document.createElement('div');
+      wrapper.className = 'nav-utility-dropdown';
+
+      const btn = document.createElement('button');
+      btn.className = 'nav-utility-link nav-utility-dropdown-btn';
+      btn.textContent = label;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+
+      const dropdown = document.createElement('ul');
+      dropdown.className = 'nav-utility-dropdown-list';
+      [...subList.children].forEach((subLi) => {
+        const subLink = subLi.querySelector('a');
+        if (subLink) {
+          const item = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = subLink.href;
+          a.textContent = subLink.textContent;
+          item.append(a);
+          dropdown.append(item);
+        }
+      });
+
+      wrapper.append(btn, dropdown);
+      left.append(wrapper);
+    } else if (directLink) {
       const a = document.createElement('a');
-      a.href = link.href;
-      a.textContent = link.textContent;
+      a.href = directLink.href;
+      a.textContent = directLink.textContent;
       a.className = 'nav-utility-link';
       left.append(a);
     }
