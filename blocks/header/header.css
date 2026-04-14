@@ -181,7 +181,7 @@ header .nav-search-trigger {
   border-bottom: 1px solid rgb(255 255 255 / 40%);
   border-radius: 0;
   padding: 0 0 5px;
-  margin-right: 14px;
+  margin-right: 0;
   cursor: pointer;
   font-size: 16px;
   font-weight: 300;
@@ -253,11 +253,11 @@ header .nav-search-close {
   padding: 4px 8px;
 }
 
-/* Tools — 15px gap matching source spacing */
+/* Tools — compact spacing matching source */
 header .nav-tools {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 0;
 }
 
 header .nav-tool-link {
@@ -267,13 +267,13 @@ header .nav-tool-link {
   font-size: 14.5px;
   font-weight: 400;
   white-space: nowrap;
-  padding-left: 16px;
+  margin-right: 15px;
 }
 
 header .nav-tool-link::before {
   content: '\203A';
   margin-right: 4px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 
@@ -292,7 +292,8 @@ header .nav-lang-btn {
   background: none;
   border: none;
   border-radius: 0;
-  padding: 0 0 5px;
+  padding: 0;
+  margin: 0 15px 0 0;
   font-size: 14.5px;
   font-weight: 400;
   color: #fff;
@@ -302,7 +303,8 @@ header .nav-lang-btn {
 
 header .nav-lang-btn::after {
   content: ' \25BE';
-  font-size: 10px;
+  font-size: 9px;
+  vertical-align: 1px;
 }
 
 @media (width >= 900px) {
@@ -315,17 +317,17 @@ header .nav-lang-btn:hover {
   opacity: 0.8;
 }
 
-/* Sign In — yellow #fedf01, 14.5px/500, 42px total height */
+/* Sign In — yellow #fedf01, matching source 42px height */
 header .nav-signin-btn {
   display: inline-block;
   background-color: #fedf01;
   color: #252525;
   text-decoration: none;
-  padding: 12px 15px;
+  padding: 10px 15px;
   border-radius: 1px;
   font-size: 14.5px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1.1;
   white-space: nowrap;
   border: 1px solid #fff;
   transition: background-color 0.2s;
