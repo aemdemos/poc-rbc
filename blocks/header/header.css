@@ -181,7 +181,7 @@ header .nav-search-trigger {
   border-bottom: 1px solid rgb(255 255 255 / 40%);
   border-radius: 0;
   padding: 0 0 5px;
-  margin-right: 0;
+  margin-right: 30px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 300;
@@ -252,7 +252,7 @@ header .nav-search-close {
   padding: 4px 8px;
 }
 
-/* Tools — compact spacing matching source */
+/* Tools — items control their own spacing via margin */
 header .nav-tools {
   display: flex;
   align-items: center;
@@ -266,7 +266,8 @@ header .nav-tool-link {
   font-size: 14.5px;
   font-weight: 400;
   white-space: nowrap;
-  margin-right: 15px;
+  padding-left: 16px;
+  margin: 0;
 }
 
 header .nav-tool-link::before {
@@ -291,8 +292,8 @@ header .nav-lang-btn {
   background: none;
   border: none;
   border-radius: 0;
-  padding: 0;
-  margin: 0 15px 0 0;
+  padding: 0 0 5px;
+  margin: 5px 15px 0 0;
   font-size: 14.5px;
   font-weight: 400;
   color: #fff;
@@ -322,11 +323,11 @@ header .nav-signin-btn {
   background-color: #fedf01;
   color: #252525;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-radius: 1px;
   font-size: 14.5px;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1;
   white-space: nowrap;
   border: 1px solid #fff;
   transition: background-color 0.2s;
@@ -372,7 +373,6 @@ header .nav-main-list {
     align-items: center;
     justify-content: flex-end;
     max-width: 1200px;
-    border-bottom: 1px solid #e5e5e5;
     margin: 0 auto;
     padding: 0 15px 0 90px;
     height: 48px;
