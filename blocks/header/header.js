@@ -305,10 +305,15 @@ export default async function decorate(block) {
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
 
+  // Wrap header bar in full-width blue container
+  const headerBarOuter = document.createElement('div');
+  headerBarOuter.className = 'nav-header-bar-outer';
+  headerBarOuter.append(headerBar);
+  headerBarOuter.append(hamburger);
+
   navWrapper.append(utilityBar);
-  navWrapper.append(headerBar);
+  navWrapper.append(headerBarOuter);
   navWrapper.append(searchDialog);
-  navWrapper.append(hamburger);
   navWrapper.append(globalNav);
 
   nav.append(navWrapper);
