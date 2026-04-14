@@ -106,9 +106,7 @@ function buildUtilityBar(utilSection) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  let navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  // DA projects serve content from /content path
-  if (!navPath.startsWith('/content')) navPath = `/content${navPath}`;
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
   block.textContent = '';
