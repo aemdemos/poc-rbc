@@ -117,6 +117,7 @@ header .nav-header-bar {
   margin: 0 auto;
   gap: 12px;
   overflow: visible;
+  box-sizing: border-box;
 }
 
 @media (width >= 900px) {
@@ -385,6 +386,7 @@ header .nav-main-list {
     margin: 0 auto;
     padding: 0 15px 0 80px;
     height: 48px;
+    box-sizing: border-box;
   }
 }
 
