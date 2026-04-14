@@ -383,7 +383,7 @@ header .nav-main-list {
     justify-content: flex-end;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 0 0 80px;
+    padding: 0 15px 0 80px;
     height: 48px;
   }
 }
