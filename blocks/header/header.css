@@ -53,6 +53,7 @@ header .nav-utility-link:hover {
 header .nav-header-bar-outer {
   background-color: #006ac3;
   position: relative;
+  overflow: visible;
 }
 
 header .nav-header-bar {
@@ -64,6 +65,7 @@ header .nav-header-bar {
   max-width: 1200px;
   margin: 0 auto;
   gap: 12px;
+  overflow: visible;
 }
 
 @media (width >= 900px) {
@@ -73,10 +75,11 @@ header .nav-header-bar {
   }
 }
 
-/* Brand / Logo — overlaps row 1 + row 2, text top-aligned */
+/* Brand / Logo — starts in row 1, extends into row 2. Does NOT overlap row 0. */
 header .nav-brand {
   position: relative;
   z-index: 2;
+  align-self: flex-start;
 }
 
 header .nav-brand a {
@@ -87,6 +90,7 @@ header .nav-brand a {
   color: #fff;
   font-weight: 400;
   font-size: 16px;
+  padding-top: 10px;
 }
 
 header .nav-brand img {
