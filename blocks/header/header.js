@@ -87,7 +87,6 @@ function buildUtilityBar(utilSection) {
 
   [...utilList.children].forEach((li) => {
     const subList = li.querySelector('ul');
-    const directLink = li.querySelector(':scope > a');
 
     if (subList) {
       // Dropdown item (e.g. Institutional)
@@ -104,6 +103,12 @@ function buildUtilityBar(utilSection) {
       btn.addEventListener('click', () => {
         const open = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+      wrapper.addEventListener('mouseenter', () => {
+        btn.setAttribute('aria-expanded', 'true');
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        btn.setAttribute('aria-expanded', 'false');
       });
 
       const dropdown = document.createElement('ul');
@@ -122,12 +127,16 @@ function buildUtilityBar(utilSection) {
 
       wrapper.append(btn, dropdown);
       left.append(wrapper);
-    } else if (directLink) {
-      const a = document.createElement('a');
-      a.href = directLink.href;
-      a.textContent = directLink.textContent;
-      a.className = 'nav-utility-link';
-      left.append(a);
+    } else {
+      // Simple link — may be direct <a> or wrapped in <p>
+      const link = li.querySelector('a');
+      if (link) {
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.textContent = link.textContent;
+        a.className = 'nav-utility-link';
+        left.append(a);
+      }
     }
   });
 
