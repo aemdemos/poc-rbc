@@ -187,7 +187,6 @@ header .nav-search-trigger {
   font-weight: 300;
   color: #fff;
   white-space: nowrap;
-  min-width: 145px;
 }
 
 header .nav-search-trigger::before {
@@ -342,7 +341,6 @@ header .nav-signin-btn:hover {
 header .nav-global {
   display: none;
   background-color: #fff;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 header nav[aria-expanded="true"] .nav-global {
@@ -374,6 +372,7 @@ header .nav-main-list {
     align-items: center;
     justify-content: flex-end;
     max-width: 1200px;
+    border-bottom: 1px solid #e5e5e5;
     margin: 0 auto;
     padding: 0 15px 0 90px;
     height: 48px;
