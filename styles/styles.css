@@ -355,6 +355,11 @@ main > .section {
   margin: 0;
 }
 
+/* Hide empty sections left behind after metadata block is consumed */
+main > .section:empty {
+  padding: 0;
+}
+
 main > .section > div:not(.bg-image) {
   max-width: var(--max-width-site);
   margin: auto;
