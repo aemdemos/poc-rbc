@@ -224,7 +224,7 @@ button {
 /* ===== Links ===== */
 a {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
   overflow-wrap: break-word;
   transition: color var(--transition-base);
 }
