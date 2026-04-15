@@ -224,7 +224,7 @@ button {
 /* ===== Links ===== */
 a {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
   overflow-wrap: break-word;
   transition: color var(--transition-base);
 }
@@ -353,6 +353,11 @@ main img {
 main > .section {
   padding: var(--spacing-xl) 0;
   margin: 0;
+}
+
+/* Hide empty sections left behind after metadata block is consumed */
+main > .section:empty {
+  padding: 0;
 }
 
 main > .section > div:not(.bg-image) {
