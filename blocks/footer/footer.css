@@ -66,13 +66,13 @@ footer .footer-column ul {
 
 footer .footer-column ul li {
   margin-bottom: 6px;
-  color: rgb(255 255 255 / 85%);
+  color: rgb(255 255 255);
   font-size: 14px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 footer .footer-column a {
-  color: rgb(255 255 255 / 85%);
+  color: rgb(255 255 255);
   text-decoration: none;
   font-size: 14px;
 }
@@ -117,7 +117,7 @@ footer .footer-column-apps a[href*="apple"]::before {
 
 /* stylelint-disable-next-line no-descending-specificity */
 footer .footer-column p {
-  color: rgb(255 255 255 / 75%);
+  color: rgb(255 255 255 / 90%);
   font-size: 14px;
   margin-bottom: 4px;
 }
@@ -150,13 +150,13 @@ footer .footer-legal-left {
 /* stylelint-disable-next-line no-descending-specificity */
 footer .footer-legal-left p {
   font-size: 12px;
-  color: rgb(255 255 255 / 70%);
+  color: rgb(255 255 255 / 90%);
   margin-bottom: 4px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 footer .footer-legal-left a {
-  color: rgb(255 255 255 / 70%);
+  color: rgb(255 255 255 / 90%);
   font-size: 12px;
   text-decoration: underline;
 }
