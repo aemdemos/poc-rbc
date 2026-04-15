@@ -12,47 +12,51 @@ export default async function decorate(block) {
 
   block.textContent = '';
   const footer = document.createElement('div');
-
-  // Get the sections from fragment
   const sections = fragment ? [...fragment.children] : [];
 
   // === Blue columns section ===
   const blueSection = document.createElement('div');
   blueSection.className = 'footer-columns';
-
   const columnsInner = document.createElement('div');
   columnsInner.className = 'footer-columns-inner';
 
-  // The first section contains the 4 column divs
-  // EDS wraps them — find all divs that contain h3 headings
+  // EDS flattens all content into one default-content-wrapper.
+  // Split into columns by <h3> — each h3 starts a new column.
   const firstSection = sections[0];
   if (firstSection) {
-    const allDivs = firstSection.querySelectorAll(':scope div > div');
-    const columnDivs = [];
+    const wrapper = firstSection.querySelector('.default-content-wrapper') || firstSection;
+    const children = [...wrapper.children];
+    let currentCol = null;
 
-    // Find divs that have h3 headings — these are the column containers
-    allDivs.forEach((div) => {
-      if (div.querySelector('h3') && !div.querySelector('div > h3')) {
-        columnDivs.push(div);
+    children.forEach((child) => {
+      if (child.tagName === 'H3') {
+        currentCol = document.createElement('div');
+        currentCol.className = 'footer-column';
+        columnsInner.append(currentCol);
+      }
+      if (!currentCol) {
+        currentCol = document.createElement('div');
+        currentCol.className = 'footer-column';
+        columnsInner.append(currentCol);
+      }
+      currentCol.append(child);
+    });
+
+    // Add chevrons to phone number paragraphs (after h4 headings)
+    columnsInner.querySelectorAll('h4').forEach((h4) => {
+      let next = h4.nextElementSibling;
+      while (next && next.tagName === 'P') {
+        const text = next.textContent.trim();
+        if (/^\d|^1-/.test(text)) {
+          next.classList.add('footer-phone');
+        }
+        next = next.nextElementSibling;
       }
     });
 
-    // If we found column divs, use them; otherwise try direct children
-    const columns = columnDivs.length > 0
-      ? columnDivs
-      : [...(firstSection.querySelectorAll(':scope > div > div') || [])];
-
-    columns.forEach((col) => {
-      const column = document.createElement('div');
-      column.className = 'footer-column';
-      while (col.firstChild) column.append(col.firstChild);
-      columnsInner.append(column);
-    });
-
-    // If no columns found, just dump all content
-    if (columnsInner.children.length === 0) {
-      while (firstSection.firstChild) columnsInner.append(firstSection.firstChild);
-    }
+    // Mark last column for OS icon styling
+    const lastCol = columnsInner.querySelector('.footer-column:last-child');
+    if (lastCol) lastCol.classList.add('footer-column-apps');
   }
 
   blueSection.append(columnsInner);
@@ -60,32 +64,23 @@ export default async function decorate(block) {
   // === Gray legal section ===
   const graySection = document.createElement('div');
   graySection.className = 'footer-legal';
-
   const legalInner = document.createElement('div');
   legalInner.className = 'footer-legal-inner';
-
   const legalLeft = document.createElement('div');
   legalLeft.className = 'footer-legal-left';
-
   const legalRight = document.createElement('div');
   legalRight.className = 'footer-legal-right';
 
-  // The second section has copyright, legal links, and social links
   const lastSection = sections[1] || sections[sections.length - 1];
   if (lastSection) {
     const paras = lastSection.querySelectorAll('p');
     paras.forEach((p, i) => {
-      if (i < 2) {
-        // Copyright and legal links go left
-        const clone = p.cloneNode(true);
-        legalLeft.append(clone);
-      }
+      if (i < 2) legalLeft.append(p.cloneNode(true));
     });
 
     // Social icons
     const socialDiv = document.createElement('div');
     socialDiv.className = 'footer-social';
-
     const socialLinks = [
       { name: 'Facebook', url: 'https://www.facebook.com/rbc' },
       { name: 'Instagram', url: 'https://www.instagram.com/rbc/' },
@@ -93,7 +88,6 @@ export default async function decorate(block) {
       { name: 'YouTube', url: 'https://www.youtube.com/user/RBC' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/company/rbc' },
     ];
-
     socialLinks.forEach(({ name, url }) => {
       const a = document.createElement('a');
       a.href = url;
@@ -103,6 +97,8 @@ export default async function decorate(block) {
     });
 
     // Back to Top
+    const topWrapper = document.createElement('div');
+    topWrapper.className = 'footer-top-wrapper';
     const backToTop = document.createElement('a');
     backToTop.href = '#top';
     backToTop.className = 'footer-back-to-top';
@@ -112,9 +108,6 @@ export default async function decorate(block) {
     const topText = document.createElement('span');
     topText.textContent = 'Top';
     backToTop.append(arrow, topText);
-
-    const topWrapper = document.createElement('div');
-    topWrapper.className = 'footer-top-wrapper';
     topWrapper.append(backToTop);
 
     legalRight.append(socialDiv, topWrapper);
@@ -122,7 +115,6 @@ export default async function decorate(block) {
 
   legalInner.append(legalLeft, legalRight);
   graySection.append(legalInner);
-
   footer.append(blueSection, graySection);
   block.append(footer);
 }
